@@ -1,0 +1,48 @@
+<?xml version ='1.0' encoding='UTF-8'?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="com.ey.test3po.testcases" preserve-order="true" >
+
+	<listeners>
+		<!-- <listener class-name="com.ey.test3po.util.ExtentReporterListener"></listener> -->
+	</listeners>
+
+	<test name="Landing Page" preserve-order="true">
+		<classes>
+			<class name="com.ey.test3po.testcases.LandingPageTest">
+				<methods>
+					<include name="landingPageLogoTest" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Home Page" preserve-order="true">
+		<classes>
+			<class name="com.ey.test3po.testcases.HomePageTest">
+				<methods>
+					<include name="isOnHomePage" />
+					<include name="welcomeSectionTest" />
+					<include name="quickStartTest" />
+					<include name="easyToUnderstandTest" />
+					<include name="flexibleTest" />
+					<include name="deliverResultsTest" />
+					<include name="testimonialArrowTest" />
+					<include name="getStartedButtonClcikTest" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Goal Journey" preserve-order="true">
+		<classes>
+			<class name="com.ey.test3po.testcases.GoalJourneyTest">
+				<methods>
+					<include name="getCurrentActityForQuestionnaireTest" />
+					<include name="fillQuestionnaireTest" />
+					<include name="selectGoal" />
+					<include name="goalJourneyTest" />
+					<include name="riskFactorTest" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

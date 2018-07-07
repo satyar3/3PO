@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [3PO App Test Automation Suite]">
+  <test thread-count="5" name="3PO App Test Cases(failed)">
+    <classes>
+      <class name="com.ey.test3po.testcases.GoalJourneyTest">
+        <methods>
+          <include name="getCurrentActityForQuestionnaireTest"/>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.ey.test3po.testcases.GoalJourneyTest -->
+    </classes>
+  </test> <!-- 3PO App Test Cases(failed) -->
+</suite> <!-- Failed suite [3PO App Test Automation Suite] -->
