@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener class-name="com.ey.test3po.util.TestListener" />
+		<listener class-name="com.ey.test3po.retryanalyzer.AnnotationTransformer"/>
+	</listeners>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

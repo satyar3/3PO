@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ey.test3po.testcases.HomePageTest">
+      <class name="com.ey.test3po.userjourney.test">
         <methods>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="signInButtonClcikTest"/>
-          <include name="isOnHomePage"/>
+          <include name="t4"/>
+          <include name="t1"/>
+          <include name="t3"/>
+          <include name="t2"/>
         </methods>
-      </class> <!-- com.ey.test3po.testcases.HomePageTest -->
+      </class> <!-- com.ey.test3po.userjourney.test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

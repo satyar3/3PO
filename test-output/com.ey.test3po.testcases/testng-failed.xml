@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [com.ey.test3po.testcases]">
-  <test thread-count="5" name="Home Page(failed)">
+  <listeners>
+    <listener class-name="com.ey.test3po.extentreport.TestListener"/>
+  </listeners>
+  <test thread-count="5" name="PageLevelTests(failed)">
     <classes>
-      <class name="com.ey.test3po.testcases.HomePageTest">
+      <class name="com.ey.test3po.pagelevellessthan55.SplashPageTest">
         <methods>
-          <include name="testimonialArrowTest"/>
-          <include name="tearDown"/>
+          <include name="splashPageT"/>
           <include name="setUp"/>
-          <include name="isOnHomePage"/>
+          <include name="tearDown"/>
         </methods>
-      </class> <!-- com.ey.test3po.testcases.HomePageTest -->
+      </class> <!-- com.ey.test3po.pagelevellessthan55.SplashPageTest -->
     </classes>
-  </test> <!-- Home Page(failed) -->
+  </test> <!-- PageLevelTests(failed) -->
 </suite> <!-- Failed suite [com.ey.test3po.testcases] -->
