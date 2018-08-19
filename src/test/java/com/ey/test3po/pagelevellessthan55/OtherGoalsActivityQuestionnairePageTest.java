@@ -7,10 +7,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.ey.test3po.extentreport.ExtentReporterNG;
 import com.ey.test3po.pages.GoalSelectionPage;
 import com.ey.test3po.pages.OtherGoalActivityQuestionnairePage;
 import com.ey.test3po.pages.UserProfilePage;
@@ -18,7 +16,6 @@ import com.ey.test3po.pages.WelcomePage;
 import com.ey.test3po.testbase.TestBase;
 import com.ey.test3po.util.TestUtil;
 
-@Listeners(ExtentReporterNG.class)
 public class OtherGoalsActivityQuestionnairePageTest extends TestBase{
 	
 	WelcomePage homepage;
@@ -52,7 +49,7 @@ public class OtherGoalsActivityQuestionnairePageTest extends TestBase{
 	public void otherGoalsActivityQuestionnaire(String annualincome, String zip, String age, String goalname,	
 			String purchaseyear,String goalamount,String goalduration,String riskfactor,String plannedcontributionamt,String plannedinvamt,
 			String delayduration, String username, String email, String pwd, String repwd, String suggestedcontribution, String suggestedaffordability1, String suggestedcurrentasset, String suggestedaffordability2, 
-			String suggestedaffordability3, String planneddelay, String key)
+			String suggestedaffordability3, String planneddelay, String checkbox, String key)
 	{
 		userprofile.userProfileQuestionnaire(annualincome, zip, age, key);
 		selectgoal.goalChoice("Other Goal", key);

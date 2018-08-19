@@ -12,7 +12,6 @@ import com.ey.test3po.pages.WelcomePage;
 import com.ey.test3po.testbase.TestBase;
 
 
-//@Listeners(ExtentReporterNG.class)
 public class WelcomePageTest extends TestBase {
 
 	WelcomePage homepage;

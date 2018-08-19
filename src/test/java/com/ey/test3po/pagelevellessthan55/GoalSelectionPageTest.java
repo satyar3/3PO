@@ -7,17 +7,14 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.ey.test3po.extentreport.ExtentReporterNG;
 import com.ey.test3po.pages.GoalSelectionPage;
 import com.ey.test3po.pages.UserProfilePage;
 import com.ey.test3po.pages.WelcomePage;
 import com.ey.test3po.testbase.TestBase;
 import com.ey.test3po.util.TestUtil;
 
-@Listeners(ExtentReporterNG.class)
 public class GoalSelectionPageTest extends TestBase{
 	
 	WelcomePage homepage;

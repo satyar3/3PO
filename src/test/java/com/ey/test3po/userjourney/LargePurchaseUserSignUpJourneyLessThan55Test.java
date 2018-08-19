@@ -76,7 +76,8 @@ public class LargePurchaseUserSignUpJourneyLessThan55Test extends TestBase {
 			String plannedcontributionamt, String plannedinvamt, String delayduration, String username, String email,
 			String pwd, String repwd, String suggestedcontribution, String suggestedaffordability1,
 			String suggestedcurrentasset, String suggestedaffordability2, String suggestedaffordability3,
-			String planneddelay, String checkbox, String key) {
+			String planneddelay, String checkbox, String key) 
+	{
 
 		try
 		{
