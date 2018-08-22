@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
+import com.ey.test3po.util.TestUtil;
 
 public class OtherGoalAnnualSpendingPage extends TestBase
 {
 	
-	public ArrayList<Object> getPageContent()
+	public ArrayList<Object> getPageContentOfAnnualSpending(String planedcontribution, String plannedinvamount)
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 		
@@ -17,8 +18,33 @@ public class OtherGoalAnnualSpendingPage extends TestBase
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("annualspendingsubheader"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("othergoalannualspendingsuggestedplan"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("goalsubheader"))).isDisplayed());
-		pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandannualspending"))).isDisplayed());
-		pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+		
+		try 
+		{
+			if(Double.parseDouble(planedcontribution) != 0 || Double.parseDouble(plannedinvamount) != 0)
+			{
+				pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandannualspending"))).isDisplayed());
+				pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+			}
+			else
+			{
+				pagecontent.add(true);
+				pagecontent.add(true);
+			}
+		}
+		catch(NumberFormatException e)
+		{
+			if(Double.parseDouble(plannedinvamount) != 0 || Double.parseDouble(planedcontribution) != 0)
+			{
+				pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandannualspending"))).isDisplayed());
+				pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+			}
+			else
+			{
+				pagecontent.add(true);
+				pagecontent.add(true);
+			}
+		}
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("anualspendingcontactbtn"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("haveqtnsannualspending"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("calladv"))).getText());
@@ -41,9 +67,33 @@ public class OtherGoalAnnualSpendingPage extends TestBase
 			String new_plansuggestiontxt = plansuggestiontxt.replaceAll("[^0-9]", "");
 			pagecontent.add(new_plansuggestiontxt);
 		}
-		String legandtxt = driver.findElement(By.xpath(prop.getProperty("othergoalannualspendinglagendtxt"))).getText();
-		pagecontent.add(legandtxt);
 		
+		try 
+		{
+			if(Double.parseDouble(planedcontribution) != 0 || Double.parseDouble(plannedinvamount) != 0)
+			{
+				String legandtxt = driver.findElement(By.xpath(prop.getProperty("othergoalannualspendinglagendtxt"))).getText();
+				pagecontent.add(legandtxt);
+			}
+			else
+			{
+				pagecontent.add("");
+			}
+		}
+		catch(NumberFormatException e)
+		{
+			if(Double.parseDouble(plannedinvamount) != 0 || Double.parseDouble(planedcontribution) != 0)
+			{
+				String legandtxt = driver.findElement(By.xpath(prop.getProperty("othergoalannualspendinglagendtxt"))).getText();
+				pagecontent.add(legandtxt);
+			}
+			else
+			{
+				pagecontent.add("");
+			}
+		}
+		
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}
 	

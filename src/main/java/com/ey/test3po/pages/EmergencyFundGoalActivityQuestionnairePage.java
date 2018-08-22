@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
+import com.ey.test3po.util.TestUtil;
 
 import io.appium.java_client.MobileBy;
 
-public class EmergencyFundGoalActivityQuestionnairePage extends TestBase 
+public class EmergencyFundGoalActivityQuestionnairePage extends TestBase
 {
 
 	public static String monthsofsal;
 
-	public void goalJourney(String goalname, String monthsofsaltosave, String key) 
+	public void fillGoalQuestionnaire(String goalname, String monthsofsaltosave, String key)
 	{
 
 		// entering the details
@@ -25,11 +26,13 @@ public class EmergencyFundGoalActivityQuestionnairePage extends TestBase
 
 		monthsofsal = monthsofsaltosave.substring(0, monthsofsaltosave.length());
 
-		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\""+ upd_monthsofsaltosave + "\"))")).click();
+		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"" + upd_monthsofsaltosave + "\"))")).click();
+		
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
 
-	public ArrayList<Object> getPageContent() 
+	public ArrayList<Object> getPageContentOfGoalQuestionnaire()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -40,14 +43,15 @@ public class EmergencyFundGoalActivityQuestionnairePage extends TestBase
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("emegencygoalname"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("emergencygoalduration"))).isDisplayed());
 
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}
 
-	public ArrayList<Object> pageLevelErrorMsg() 
+	public ArrayList<Object> pageLevelErrorMsg()
 	{
 
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
-		
+
 		ArrayList<Object> list = new ArrayList<Object>();
 
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsgimage"))).isDisplayed());
@@ -57,7 +61,7 @@ public class EmergencyFundGoalActivityQuestionnairePage extends TestBase
 		return list;
 	}
 
-	public ArrayList<Object> fieldLevelErrorMsg() 
+	public ArrayList<Object> fieldLevelErrorMsg()
 	{
 
 		ArrayList<Object> list = new ArrayList<Object>();

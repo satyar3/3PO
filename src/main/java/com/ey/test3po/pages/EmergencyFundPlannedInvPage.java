@@ -7,12 +7,12 @@ import org.openqa.selenium.By;
 import com.ey.test3po.testbase.TestBase;
 import com.ey.test3po.util.TestUtil;
 
-public class EmergencyFundPlannedInvPage extends TestBase 
+public class EmergencyFundPlannedInvPage extends TestBase
 {
 
 	public ArrayList<Object> pagecontentafterclick = new ArrayList<Object>();
 
-	public ArrayList<Object> getPageContent() 
+	public ArrayList<Object> getPageContentOfPlannedInvestment()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -31,28 +31,32 @@ public class EmergencyFundPlannedInvPage extends TestBase
 
 		pagecontent.add(suggestcurrentasset);
 
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}
 
-	public void setMonthlyInv(String amount, String key) {
+	public void setMonthlyInvestment(String amount, String key)
+	{
 
 		String upd_amount = amount.substring(0, amount.length());
 
 		driver.findElement(By.xpath(prop.getProperty("plannedinvtxtboxplaceholdertxt"))).click();
-		do 
+		do
 		{
 			driver.findElement(By.xpath(prop.getProperty("plannedinvtxtboxplaceholdertxt"))).clear();
 			driver.findElement(By.xpath(prop.getProperty("plannedinvtxtboxplaceholdertxt"))).sendKeys(TestUtil.convNum(upd_amount) + "");
-		} 
-		while (!driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestionamount"))).getText()	.equals("$" + TestUtil.convNum(upd_amount)));
-		
+		}
+		while (!driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestionamount"))).getText().equals("$" + TestUtil.convNum(upd_amount)));
+
 		driver.findElement(By.xpath(prop.getProperty("emegencyplannedinvheader"))).click();
 		// driver.hideKeyboard();
-		pagecontentafterclick = getPageContentAfterClick();
+		pagecontentafterclick = getPageContentAfterClickOfPlannedInvestment();
+		
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
 
-	public ArrayList<Object> pageLevelErrorMsg() 
+	public ArrayList<Object> pageLevelErrorMsg()
 	{
 
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
@@ -66,7 +70,7 @@ public class EmergencyFundPlannedInvPage extends TestBase
 		return list;
 	}
 
-	public static ArrayList<Object> getPageContentAfterClick() 
+	public static ArrayList<Object> getPageContentAfterClickOfPlannedInvestment()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 

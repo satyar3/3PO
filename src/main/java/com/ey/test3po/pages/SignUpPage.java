@@ -6,13 +6,14 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
+import com.ey.test3po.util.TestUtil;
 
 public class SignUpPage extends TestBase
 {
 	
 	public static Logger log = Logger.getLogger(SignUpPage.class);
 	
-	public static ArrayList<Object> getPageContent()
+	public static ArrayList<Object> getPageContentOfSignUpScreen()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 		
@@ -27,10 +28,11 @@ public class SignUpPage extends TestBase
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("userpwd"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("userrepwd"))).isDisplayed());		
 		
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(),Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}
 	
-	public void signUp(String username, String email, String password, String repassword, String key)
+	public void fillSignUpDetails(String username, String email, String password, String repassword, String key)
 	{
 		log.info("Username is : "+username);
 		log.info("E-mail is : "+email);
@@ -39,7 +41,9 @@ public class SignUpPage extends TestBase
 		driver.findElement(By.id(prop.getProperty("username"))).sendKeys(username);
 		driver.findElement(By.id(prop.getProperty("useremail"))).sendKeys(email);
 		driver.findElement(By.id(prop.getProperty("userpwd"))).sendKeys(password);
-		driver.findElement(By.id(prop.getProperty("userrepwd"))).sendKeys(repassword);		
+		driver.findElement(By.id(prop.getProperty("userrepwd"))).sendKeys(repassword);	
+		
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(),Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
 

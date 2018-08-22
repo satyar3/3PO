@@ -7,7 +7,10 @@
 	</listeners>
 	<test thread-count="5" name="LargePurchaseUserSignUpJourneyMoreThan55Test">
 		<classes>
+			<class name="com.ey.test3po.userjourney.LargePurchaseUserSignUpJourneyLessThan55Test" />
+			<class name="com.ey.test3po.userjourney.OtherGoalUserSignUpJourneyLessThan55Test" />
 			<class name="com.ey.test3po.userjourney.LargePurchaseUserSignUpJourneyMoreThan55Test" />
+			<class name="com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyMoreThan55Test" />
 		</classes>
 	</test> <!-- OtherGoalLessThan55Test -->
 </suite> <!-- Suite -->

@@ -12,64 +12,77 @@ import com.ey.test3po.extentreport.ExtentTestManager;
 import com.ey.test3po.testbase.TestBase;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class TestListener extends TestBase implements ITestListener {
+public class TestListener extends TestBase implements ITestListener
+{
 
-	private static String getTestMethodName(ITestResult iTestResult) {
+	private static String getTestMethodName(ITestResult iTestResult)
+	{
 		return iTestResult.getMethod().getConstructorOrMethod().getName();
 	}
 
 	// Before starting all tests, below method runs.
-	public void onStart(ITestContext iTestContext) {
+	public void onStart(ITestContext iTestContext)
+	{
 		System.out.println("onStart method " + iTestContext.getName());
+		// System.out.println(testcasenum + " execution has been started");
 		iTestContext.setAttribute("WebDriver", TestBase.driver);
 	}
 
 	// After ending all tests, below method runs.
-	public void onFinish(ITestContext iTestContext) {
+	public void onFinish(ITestContext iTestContext)
+	{
 		System.out.println("onFinish method " + iTestContext.getName());
+		// System.out.println(testcasenum + " execution has been finished");
 		// Do tier down operations for extentreports reporting!
 		ExtentTestManager.endTest();
 		ExtentManager.getReporter().flush();
 	}
 
-	public void onTestStart(ITestResult iTestResult) {
+	public void onTestStart(ITestResult iTestResult)
+	{
 		System.out.println("onTestStart method " + getTestMethodName(iTestResult) + " start");
+		// System.out.println(testcasenum + " execution has been started.");
 		// Start operation for extentreports.
 		ExtentTestManager.startTest(iTestResult.getMethod().getMethodName(), "");
 	}
 
-	public void onTestSuccess(ITestResult iTestResult) {
+	public void onTestSuccess(ITestResult iTestResult)
+	{
 		System.out.println("onTestSuccess method " + getTestMethodName(iTestResult) + " succeed");
+		// System.out.println(testcasenum + " execution has been completed
+		// successfully.");
 		// Extentreports log operation for passed tests.
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Test passed");
 	}
 
-	public void onTestFailure(ITestResult iTestResult) {
+	public void onTestFailure(ITestResult iTestResult)
+	{
 		System.out.println("onTestFailure method " + getTestMethodName(iTestResult) + " failed");
-
+		// System.out.println(testcasenum + " execution has been failed.");
 		// Get driver from TestBase and assign to local webdriver variable.
 		// Object testClass = iTestResult.getInstance();
 		WebDriver webDriver = TestBase.driver;
 
 		// Take base64Screenshot screenshot.
-		String base64Screenshot = "data:image/png;base64,"
-				+ ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
+		String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
 
 		// Extentreports log and screenshot operations for failed tests.
-		ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed",
-				ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
+		ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
 
 		ExtentTestManager.getTest().log(LogStatus.FAIL, iTestResult.getThrowable());
 		TestUtil.captureScreenshot(iTestResult.getMethod().getMethodName());
 	}
 
-	public void onTestSkipped(ITestResult iTestResult) {
+	public void onTestSkipped(ITestResult iTestResult)
+	{
 		System.out.println("onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
+		// System.out.println(testcasenum + " execution has been skipped.");
 		// Extentreports log operation for skipped tests.
 		ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
 	}
 
-	public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
+	public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult)
+	{
 		System.out.println("Test failed but it is in defined success ratio " + getTestMethodName(iTestResult));
 	}
 }

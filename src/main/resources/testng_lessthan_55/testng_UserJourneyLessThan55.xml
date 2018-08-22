@@ -7,10 +7,10 @@
 	</listeners>
   <test thread-count="5" name="UserJourneyTest" preserve-order="true">
     <classes>
+      <class name="com.ey.test3po.userjourney.EmergencyUserSignUpJourneyTest"/>
       <class name="com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test"/>
       <class name="com.ey.test3po.userjourney.LargePurchaseUserSignUpJourneyLessThan55Test"/>
-      <class name="com.ey.test3po.userjourney.OtherGoalUserSignUpJourneyLessThan55Test"/>
-      <class name="com.ey.test3po.userjourney.EmergencyUserSignUpJourneyTest"/>
+      <class name="com.ey.test3po.userjourney.OtherGoalUserSignUpJourneyLessThan55Test"/>      
       <class name="com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyLessThan55Test"/>
     </classes>
   </test> <!-- UserJourneyTest -->

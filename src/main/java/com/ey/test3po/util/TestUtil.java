@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Locale;
 
 import org.apache.commons.io.FileUtils;
@@ -16,41 +17,57 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriverException;
 import org.testng.Reporter;
 
 import com.ey.test3po.testbase.TestBase;
 
-public class TestUtil extends TestBase {
+public class TestUtil extends TestBase
+{
 
 	static String TESTDATA_SHEET_PATH = "src\\main\\java\\com\\ey\\test3po\\testdata\\TestData.xlsx";
 	static Workbook book;
 	static Sheet sheet;
 
-	public static Object[][] getTestData(String sheetName) {
+	public static Object[][] getTestData(String sheetName)
+	{
 
 		FileInputStream file = null;
-		try {
+		try
+		{
 			file = new FileInputStream(TESTDATA_SHEET_PATH);
-		} catch (FileNotFoundException e) {
+		}
+		catch (FileNotFoundException e)
+		{
 			e.printStackTrace();
 		}
-		try {
+		try
+		{
 			book = WorkbookFactory.create(file);
-		} catch (InvalidFormatException e) {
+		}
+		catch (InvalidFormatException e)
+		{
 			e.printStackTrace();
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			e.printStackTrace();
 		}
 		sheet = book.getSheet(sheetName);
 
 		Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
 
-		for (int i = 0; i < sheet.getLastRowNum(); i++) {
-			for (int k = 0; k < sheet.getRow(0).getLastCellNum(); k++) {
+		for (int i = 0; i < sheet.getLastRowNum(); i++)
+		{
+			for (int k = 0; k < sheet.getRow(0).getLastCellNum(); k++)
+			{
 
-				try {
+				try
+				{
 					data[i][k] = sheet.getRow(i + 1).getCell(k).toString();
-				} catch (Exception n) {
+				}
+				catch (Exception n)
+				{
 					data[i][k] = "";
 				}
 			}
@@ -59,18 +76,21 @@ public class TestUtil extends TestBase {
 		return data;
 	}
 
-	public static void captureScreenshot(String testFunctionName) {
-
+	public static void captureScreenshot(String testFunctionName)
+	{
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String currentDir = System.getProperty("user.dir");
-		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MMM.dd.HH.mm.ss");
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-		String imagePath = currentDir + "/screenshots/" + testFunctionName + "_" + sdf.format(timestamp) + ".png";
+		String imagePath = currentDir + "/screenshots/" + testcasenum + "_" + testFunctionName + "_failed_" + sdf.format(timestamp) + ".png";
 		File fname = new File(imagePath);
-		try {
+		try
+		{
 			FileUtils.copyFile(scrFile, fname);
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 
 			e.printStackTrace();
 		}
@@ -80,18 +100,45 @@ public class TestUtil extends TestBase {
 
 	}
 
-	public static Object convNum(String num) {
+	public static void captureScreenShotForEachStep(String callermethod, String currentmethod)
+	{
+		try
+		{
+			FileUtils.copyFile(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE), new File(System.getProperty("user.dir") + "/TC_screenshots/" + "/" + callermethod + "/"+"/" + LocalDate.now() + "/" + testcasenum + "_" + currentmethod + "_" + new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Timestamp(System.currentTimeMillis())) + ".png"));
+		}
+		catch (WebDriverException e1)
+		{
+			e1.printStackTrace();
+		}
+		catch (IOException e1)
+		{
+			e1.printStackTrace();
+		}
+	}
+
+	public static Object convNum(String num)
+	{
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
 
-		if (num.length() < 10 && !num.contains(",")) {
+		if (num.length() < 10 && !num.contains(","))
+		{
 			Object newnum = numberFormat.format(Integer.parseInt(String.valueOf(num)));
 			return newnum;
-		} else if (num.length() >= 10 && !num.contains(",")) {
+		}
+		else if (num.length() >= 10 && !num.contains(","))
+		{
 			Object newnum = numberFormat.format(Double.parseDouble(String.valueOf(num)));
 			return newnum;
-		} else {
-			return num;
 		}
-
+		else if (num.equals(""))
+		{
+			Object newnum = "";
+			return newnum;
+		}
+		else
+		{
+			Object newnum = num;
+			return newnum;
+		}
 	}
 }

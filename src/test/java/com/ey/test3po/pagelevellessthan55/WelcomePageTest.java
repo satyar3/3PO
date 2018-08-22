@@ -11,61 +11,60 @@ import org.testng.annotations.Test;
 import com.ey.test3po.pages.WelcomePage;
 import com.ey.test3po.testbase.TestBase;
 
-
-public class WelcomePageTest extends TestBase {
+public class WelcomePageTest extends TestBase
+{
 
 	WelcomePage homepage;
 
-	public WelcomePageTest() throws IOException {
+	public WelcomePageTest() throws IOException
+	{
 		super();
 	}
 
 	@BeforeMethod
-	public void setUp() throws IOException 
+	public void setUp() throws IOException
 	{
 		initialization();
-		homepage = new WelcomePage();	
+		homepage = new WelcomePage();
 	}
 
-	@Test(priority = 1, description="This test is to validate welcome page")
+	@Test(priority = 1, description = "This test is to validate welcome page")
 	public void welcomeSectionTest() throws IOException, InterruptedException
 	{
-		
 
 		ArrayList<Object> welcomescreen = homepage.welcomeScreen();
-		
+
 		Assert.assertEquals("true", welcomescreen.get(0));
 		Assert.assertEquals("Welcome", welcomescreen.get(1));
 		Assert.assertEquals("We're here to help you achieve your goals", welcomescreen.get(2));
-	
+
 		ArrayList<Object> quickstartelements = homepage.quickStart();
-		
+
 		Assert.assertEquals("true", quickstartelements.get(0));
 		Assert.assertEquals("Quick Start", quickstartelements.get(1));
 		Assert.assertEquals("We won't waste your time.Get investment advice in 3 clicks.", quickstartelements.get(2));
-	
+
 		ArrayList<Object> easytounderstandTest = homepage.easyToUnderstand();
-		
+
 		Assert.assertEquals("true", easytounderstandTest.get(0));
 		Assert.assertEquals("Easy to Understand", easytounderstandTest.get(1));
 		Assert.assertEquals("We speak your language. No confusing financial jargon.", easytounderstandTest.get(2));
-	
+
 		ArrayList<Object> flexible = homepage.flexible();
-		
+
 		Assert.assertEquals("true", flexible.get(0));
 		Assert.assertEquals("Flexible", flexible.get(1));
 		Assert.assertEquals("We allow you to review your goals, anytime, anywhere.", flexible.get(2));
-	
+
 		ArrayList<Object> deliverresults = homepage.deliverResults();
-		
+
 		Assert.assertEquals("true", deliverresults.get(0));
 		Assert.assertEquals("Deliver Results", deliverresults.get(1));
 		Assert.assertEquals("We know the value of a plan. It's never too late to get started.", deliverresults.get(2));
-	
+
 		ArrayList<String> testimonials = homepage.fetchTestimonials();
-		
-		
-		//Left Click
+
+		// Left Click
 		Assert.assertEquals("\"Great product! Made my life easy, and helped me feel better about my retirement plans.\"", testimonials.get(0));
 		Assert.assertEquals("\"This app helped me over the first hurdle of actually setting up goals for my life. I greatly recommend it to every one.\"", testimonials.get(1));
 		Assert.assertEquals("\"Good App! I use it all the Time for my investment solutions\"", testimonials.get(2));
@@ -77,8 +76,7 @@ public class WelcomePageTest extends TestBase {
 		Assert.assertEquals("\"Nice App! It helped me feel better about my retirement plans. I use it very often.\"", testimonials.get(8));
 		Assert.assertEquals("\"This app helped me over the first hurdle of actually setting up goals for my life. I greatly recommend it to every one.\"", testimonials.get(9));
 
-		
-		//Right Click
+		// Right Click
 		Assert.assertEquals("\"Great product! Made my life easy, and helped me feel better about my retirement plans.\"", testimonials.get(19));
 		Assert.assertEquals("\"This app helped me over the first hurdle of actually setting up goals for my life. I greatly recommend it to every one.\"", testimonials.get(18));
 		Assert.assertEquals("\"Good App! I use it all the Time for my investment solutions\"", testimonials.get(17));
@@ -90,18 +88,18 @@ public class WelcomePageTest extends TestBase {
 		Assert.assertEquals("\"Nice App! It helped me feel better about my retirement plans. I use it very often.\"", testimonials.get(11));
 		Assert.assertEquals("\"This app helped me over the first hurdle of actually setting up goals for my life. I greatly recommend it to every one.\"", testimonials.get(10));
 
-					
 		ArrayList<String> buttons = homepage.isButtonsPresent();
-		
+
 		Assert.assertEquals("Get Started", buttons.get(0));
 		Assert.assertEquals("Sign In", buttons.get(1));
-	
-		homepage.getStartedButtonClcik();		
-		//homepage.signInButtonClcik();		
+
+		homepage.getStartedButtonClcik();
+		// homepage.signInButtonClcik();
 	}
-	
+
 	@AfterMethod
-	public void tearDown() throws InterruptedException {
+	public void tearDown() throws InterruptedException
+	{
 		driver.quit();
 	}
 

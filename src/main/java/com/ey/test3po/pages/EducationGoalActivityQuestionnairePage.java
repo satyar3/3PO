@@ -13,12 +13,12 @@ import com.ey.test3po.util.TestUtil;
 
 import io.appium.java_client.MobileBy;
 
-public class EducationGoalActivityQuestionnairePage extends TestBase 
+public class EducationGoalActivityQuestionnairePage extends TestBase
 {
 
 	public static WebElement flag;
 
-	public void goalJourney(String goalname, String StartYear, String collegename, String yearlyexp, String collegeduration, String key) 
+	public void fillGoalQuestionnaire(String goalname, String StartYear, String collegename, String yearlyexp, String collegeduration, String key)
 	{
 
 		// entering the details
@@ -31,16 +31,16 @@ public class EducationGoalActivityQuestionnairePage extends TestBase
 		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text(\"" + upd_StartYear + "\"))")).click();
 		driver.findElement(By.id(prop.getProperty("educationcollegename"))).click();
 		driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.eygsskpoc.ey3po:id/edt_collegeName_adp\")").click();
-		
+
 		capabilities.setCapability("unicodeKeyboard", "true");
 		driver.findElementByAndroidUIAutomator("new UiSelector().resourceId(\"com.eygsskpoc.ey3po:id/edt_collegeName_adp\")").sendKeys(collegename);
 
-		try 
+		try
 		{
 			flag = new WebDriverWait(driver, 5000).ignoring(NoSuchElementException.class).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(prop.getProperty("recyclerview")))));
 			driver.findElement(By.xpath(prop.getProperty("newyorkuniversity"))).click();
-		} 
-		catch (NoSuchElementException e) 
+		}
+		catch (NoSuchElementException e)
 		{
 			driver.findElement(By.id(prop.getProperty("educationaddcollege"))).click();
 
@@ -48,12 +48,12 @@ public class EducationGoalActivityQuestionnairePage extends TestBase
 		String upd_yearlyexp = yearlyexp.substring(0, yearlyexp.length());
 
 		// usergoalamount = upd_yearlyexp;
-		if ((driver.findElement(By.id(prop.getProperty("educationgoalamount"))).getText()).length() <= 1) 
+		if ((driver.findElement(By.id(prop.getProperty("educationgoalamount"))).getText()).length() <= 1)
 		{
-			do 
+			do
 			{
 				driver.findElement(By.id(prop.getProperty("educationgoalamount"))).sendKeys(TestUtil.convNum(upd_yearlyexp) + "");
-			} 
+			}
 			while (!driver.findElement(By.id(prop.getProperty("educationgoalamount"))).getText().equals("$" + TestUtil.convNum(upd_yearlyexp)));
 
 			driver.hideKeyboard();
@@ -61,11 +61,13 @@ public class EducationGoalActivityQuestionnairePage extends TestBase
 
 		driver.findElement(By.id(prop.getProperty("educationcollegeduration"))).click();
 		String upd_collegeduration = collegeduration.substring(0, collegeduration.length()) + " year";
-		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\""+ upd_collegeduration + "\"))")).click();
+		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"" + upd_collegeduration + "\"))")).click();
+
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
 
-	public ArrayList<Object> getPageContent() 
+	public ArrayList<Object> getPageContentOfGoalQuestionnaire()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -82,25 +84,27 @@ public class EducationGoalActivityQuestionnairePage extends TestBase
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("educationgoalamountfield"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("educationrecurringfield"))).isDisplayed());
 
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}
 
-	public ArrayList<Object> pageLevelErrorMsg() 
+	public ArrayList<Object> pageLevelErrorMsg()
 	{
 
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
-		
+
 		ArrayList<Object> list = new ArrayList<Object>();
-		
+
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsgimage"))).isDisplayed());
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsg"))).getText());
-		
+
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("okbutton"))).click();
 
 		return list;
 	}
 
-	public ArrayList<Object> fieldLevelErrorMsg() 
+	public ArrayList<Object> fieldLevelErrorMsg()
 	{
 
 		ArrayList<Object> list = new ArrayList<Object>();
@@ -120,6 +124,8 @@ public class EducationGoalActivityQuestionnairePage extends TestBase
 
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsgimage"))).isDisplayed());
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsg"))).getText());
+
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("okbutton"))).click();
 
 		// Goal Name missing
@@ -137,6 +143,8 @@ public class EducationGoalActivityQuestionnairePage extends TestBase
 
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsgimage"))).isDisplayed());
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsg"))).getText());
+
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("okbutton"))).click();
 
 		// Yearly expense Name missing
@@ -154,6 +162,9 @@ public class EducationGoalActivityQuestionnairePage extends TestBase
 
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsgimage"))).isDisplayed());
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsg"))).getText());
+
+		// TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(),
+		// Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("okbutton"))).click();
 
 		return list;

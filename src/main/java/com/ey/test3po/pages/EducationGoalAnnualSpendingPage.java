@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
+import com.ey.test3po.util.TestUtil;
 
-public class EducationGoalAnnualSpendingPage extends TestBase 
+public class EducationGoalAnnualSpendingPage extends TestBase
 {
 
-	public ArrayList<Object> getPageContent() 
+	public ArrayList<Object> getPageContentOfAnnualSpending()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -24,9 +25,8 @@ public class EducationGoalAnnualSpendingPage extends TestBase
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("calladv"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("recommentassetallocation"))).getText());
 
-		
 		String plansuggestiontxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendingsuggestedplan"))).getText();
-		if (!plansuggestiontxt.startsWith("Let's do this!")) 
+		if (!plansuggestiontxt.startsWith("Let's do this!"))
 		{
 			int dolstartpos1 = plansuggestiontxt.indexOf("$");
 			int dolendpos1 = plansuggestiontxt.indexOf("you", dolstartpos1);
@@ -37,8 +37,8 @@ public class EducationGoalAnnualSpendingPage extends TestBase
 			int dolstartpos2 = plansuggestiontxt.indexOf("$", dolstartpos1 + 1);
 			String affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.length());
 			pagecontent.add(affordabilityamtonscreenheadr);
-		} 
-		else 
+		}
+		else
 		{
 			String new_plansuggestiontxt = plansuggestiontxt.replaceAll("[^0-9]", "");
 			pagecontent.add(new_plansuggestiontxt);
@@ -47,15 +47,17 @@ public class EducationGoalAnnualSpendingPage extends TestBase
 		String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
 		pagecontent.add(legandtxt);
 
-		return pagecontent;		
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
+		return pagecontent;
 	}
 
-	public void signUp() 
+	public void signUp()
 	{
+		// TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(),Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
 
-	public ArrayList<Object> pageLevelErrorMsg() 
+	public ArrayList<Object> pageLevelErrorMsg()
 	{
 
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
@@ -64,6 +66,8 @@ public class EducationGoalAnnualSpendingPage extends TestBase
 
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsgimage"))).isDisplayed());
 		list.add(driver.findElement(By.id(prop.getProperty("pagelevelerrormsg"))).getText());
+
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("okbutton"))).click();
 
 		return list;

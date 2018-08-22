@@ -21,15 +21,16 @@ public class EmergencyFundGoalActivityQuestionnairePageTest extends TestBase
 
 	WelcomePage homepage;
 	GoalSelectionPage selectgoal;
-	UserProfilePage userprofile;	
+	UserProfilePage userprofile;
 	EmergencyFundGoalActivityQuestionnairePage goalactivity;
 	String sheetName = "EmergencyFund";
-	
-	public EmergencyFundGoalActivityQuestionnairePageTest() {
+
+	public EmergencyFundGoalActivityQuestionnairePageTest()
+	{
 
 		super();
 	}
-	
+
 	@BeforeMethod
 	public void setUp() throws MalformedURLException
 	{
@@ -38,34 +39,35 @@ public class EmergencyFundGoalActivityQuestionnairePageTest extends TestBase
 		selectgoal = new GoalSelectionPage();
 		userprofile = new UserProfilePage();
 		goalactivity = new EmergencyFundGoalActivityQuestionnairePage();
-		homepage.getStartedButtonClcik();			
+		homepage.getStartedButtonClcik();
 	}
-	
+
 	@DataProvider
-	public Object[][] getQuestionnaireTestData() {
+	public Object[][] getQuestionnaireTestData()
+	{
 		Object ob[][] = TestUtil.getTestData(sheetName);
 		return ob;
 	}
+
 	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void emergencyFundGoalActivityQuestionnaire(String annualincome, String zip, String age, String goalname, String monthsofsaltosave, 
-			String plannedinvamt, String username, String email, String pwd, String repwd, String suggestinvamount, String affordablemonthofsal, String key)
+	public void emergencyFundGoalActivityQuestionnaire(String annualincome, String zip, String age, String goalname, String monthsofsaltosave, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestinvamount, String affordablemonthofsal, String key)
 	{
-		userprofile.userProfileQuestionnaire(annualincome, zip, age, key);
+		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, key);
 		selectgoal.goalChoice("Emergency Fund", key);
-		
-		ArrayList<Object> pagecontent = goalactivity.getPageContent();
-		
+
+		ArrayList<Object> pagecontent = goalactivity.getPageContentOfGoalQuestionnaire();
+
 		Assert.assertEquals("Setting up your Emergency Fund", pagecontent.get(0));
 		Assert.assertEquals("We populated some answers based on what we know about you.", pagecontent.get(1));
 		Assert.assertEquals("Goal Name", pagecontent.get(2));
 		Assert.assertEquals("Months of Salary to Save", pagecontent.get(3));
 		Assert.assertEquals(true, pagecontent.get(4));
 		Assert.assertEquals(true, pagecontent.get(5));
-		
-		goalactivity.goalJourney(goalname, monthsofsaltosave, key);		
-		//Assert.assertEquals(".activity.DashBoardActivity", findCurrentActivity());
+
+		goalactivity.fillGoalQuestionnaire(goalname, monthsofsaltosave, key);
+		// Assert.assertEquals(".activity.DashBoardActivity", findCurrentActivity());
 	}
-	
+
 	@AfterMethod
 	public void tearDown()
 	{

@@ -6,14 +6,15 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
+import com.ey.test3po.util.TestUtil;
 
-public class GoalSelectionPage extends TestBase 
+public class GoalSelectionPage extends TestBase
 {
 
 	public static String goalXpath;
 	public static Logger log = Logger.getLogger(GoalSelectionPage.class);
 
-	public void goalChoice(String goal, String key) 
+	public void goalChoice(String goal, String key)
 	{
 
 		// creating xpath for goal
@@ -22,10 +23,21 @@ public class GoalSelectionPage extends TestBase
 		goalXpath = beforeGoalXpath + goal + afterGoalXpath;
 		driver.findElement(By.xpath(GoalSelectionPage.goalXpath)).click();
 		log.info("Goal Selected");
+		
+		try
+		{
+			Thread.sleep(3000);
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
 
-	public ArrayList<Object> getPageContent() 
+	public ArrayList<Object> getPageContentOfGoalSelectionPage()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -59,7 +71,7 @@ public class GoalSelectionPage extends TestBase
 		return pagecontent;
 	}
 
-	public ArrayList<Object> pageLevelErrorMsg() 
+	public ArrayList<Object> pageLevelErrorMsg()
 	{
 
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();

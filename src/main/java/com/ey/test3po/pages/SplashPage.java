@@ -4,11 +4,13 @@ import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
 
-public class SplashPage extends TestBase {
+public class SplashPage extends TestBase
+{
 
-	public boolean appLogo()
+	public boolean verifySpalshLogo()
 	{
-		boolean isdisplayed = driver.findElement(By.xpath(prop.getProperty("spalshScreenXpath"))).isDisplayed();		
-		return isdisplayed;				
+		boolean isdisplayed = driver.findElement(By.xpath(prop.getProperty("spalshScreenXpath"))).isDisplayed();
+
+		return isdisplayed;
 	}
 }

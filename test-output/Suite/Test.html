@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>TestNG:  Test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>5/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Wed Aug 22 19:08:13 IST 2018</td>
+</tr>
+<tr><td>Total time:</td><td>1271 seconds (1271307 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test.educationGoalLessThan55()'><b>educationGoalLessThan55</b><br>Test class: com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test<br>Parameters: 1000, 33150, 18, Education 1, 2020, Test1, 45556, 1, It's extremely important that I achieve this goal, 1000, 19000, Test, test@test.com, 123.0, 123.0, 1949, 23376, 23353, 41423, , TC_01_16</td>
+<td></td>
+<td>192</td>
+<td>com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test@33f88ab</td></tr>
+<tr>
+<td title='com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test.educationGoalLessThan55()'><b>educationGoalLessThan55</b><br>Test class: com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test<br>Parameters: 1000, 33150, 18, Education 2, 2020, Test2, 45556, 1, It's not important that I achieve this goal, 500, 30000, Test, test@test.com, 123.0, 123.0, 1837, 12401, 29900, 45668, , TC_04</td>
+<td></td>
+<td>184</td>
+<td>com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test@33f88ab</td></tr>
+<tr>
+<td title='com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test.educationGoalLessThan55()'><b>educationGoalLessThan55</b><br>Test class: com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test<br>Parameters: 10000, 33150, 54, Education 3, 2036, Test3, 5000000, 16, It's extremely important that I achieve this goal, 1000, 69352180, Test, test@test.com, 123.0, 123.0, 364811, 13706, 69352180, 5000001, , TC_07</td>
+<td></td>
+<td>314</td>
+<td>com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test@33f88ab</td></tr>
+<tr>
+<td title='com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test.educationGoalLessThan55()'><b>educationGoalLessThan55</b><br>Test class: com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test<br>Parameters: 1000, 33150, 18, Education 4, 2020, Test4, 45556, 1, It's important but not critical I achieve this goal, 1886, , Test, test@test.com, 123.0, 123.0, 1886, 45572, , 45572, , TC_10</td>
+<td></td>
+<td>217</td>
+<td>com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test@33f88ab</td></tr>
+<tr>
+<td title='com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test.educationGoalLessThan55()'><b>educationGoalLessThan55</b><br>Test class: com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test<br>Parameters: 1000, 33150, 18, Education 5, 2020, Test5, 45556, 1, It's important but not critical I achieve this goal, 1887, , Test, test@test.com, 123.0, 123.0, 1886, 45596, , 45596, , TC_13</td>
+<td></td>
+<td>156</td>
+<td>com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test@33f88ab</td></tr>
+</table><p>
+</body>
+</html>
