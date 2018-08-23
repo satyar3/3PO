@@ -5,7 +5,7 @@
 		<listener class-name="com.ey.test3po.util.TestListener" />
 		<listener class-name="com.ey.test3po.retryanalyzer.AnnotationTransformer"/>
 	</listeners>
-  <test thread-count="5" name="Test">
+  <test thread-count="5" name="EmergencyUserSignUpJourneyTest">
     <classes>
       <class name="com.ey.test3po.userjourney.EmergencyUserSignUpJourneyTest"/>
     </classes>
