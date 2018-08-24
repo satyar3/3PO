@@ -48,12 +48,10 @@ public class TestBase
 		}
 		catch (FileNotFoundException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -61,7 +59,10 @@ public class TestBase
 	@SuppressWarnings("rawtypes")
 	public void initialization() throws MalformedURLException
 	{
-
+		
+		//service = AppiumDriverLocalService.buildDefaultService();
+		//service.start();
+		
 		capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, prop.getProperty("platformName"));
 		capabilities.setCapability(CapabilityType.VERSION, prop.getProperty("PlatformVersion"));
@@ -72,18 +73,7 @@ public class TestBase
 		capabilities.setCapability("unicodeKeyboard", "true");
 		capabilities.setCapability("resetKeyboard", "true");
 
-		/*
-		 * builder = new AppiumServiceBuilder(); builder.withIPAddress("0.0.0.0");
-		 * builder.usingPort(4723); builder.withCapabilities(capabilities);
-		 * builder.withArgument(GeneralServerFlag.SESSION_OVERRIDE);
-		 * builder.withArgument(GeneralServerFlag.LOG_LEVEL,"error");
-		 * 
-		 * //Start the server with the builder service =
-		 * AppiumDriverLocalService.buildService(builder); service.start();
-		 */
-
 		driver = new AndroidDriver(new URL(prop.getProperty("url")), capabilities);
-
 		driver.manage().timeouts().implicitlyWait(Integer.parseInt(prop.getProperty("implicitlyWait")), TimeUnit.SECONDS);
 	}
 

@@ -20,64 +20,54 @@ public class TestListener extends TestBase implements ITestListener
 		return iTestResult.getMethod().getConstructorOrMethod().getName();
 	}
 
-	// Before starting all tests, below method runs.
 	public void onStart(ITestContext iTestContext)
 	{
-		System.out.println("onStart method " + iTestContext.getName());
-		// System.out.println(testcasenum + " execution has been started");
+		System.out.println("Scenario Started : " + iTestContext.getName());
 		iTestContext.setAttribute("WebDriver", TestBase.driver);
 	}
 
-	// After ending all tests, below method runs.
 	public void onFinish(ITestContext iTestContext)
 	{
-		System.out.println("onFinish method " + iTestContext.getName());
-		// System.out.println(testcasenum + " execution has been finished");
-		// Do tier down operations for extentreports reporting!
+		System.out.println("Scenario Finished : " + iTestContext.getName());
 		ExtentTestManager.endTest();
 		ExtentManager.getReporter().flush();
 	}
 
 	public void onTestStart(ITestResult iTestResult)
 	{
-		System.out.println("onTestStart method " + getTestMethodName(iTestResult) + " start");
-		// System.out.println(testcasenum + " execution has been started.");
-		// Start operation for extentreports.
+		System.out.println(getTestMethodName(iTestResult) + " test started");
 		ExtentTestManager.startTest(iTestResult.getMethod().getMethodName(), "");
 	}
 
 	public void onTestSuccess(ITestResult iTestResult)
 	{
-		System.out.println("onTestSuccess method " + getTestMethodName(iTestResult) + " succeed");
-		// System.out.println(testcasenum + " execution has been completed
-		// successfully.");
-		// Extentreports log operation for passed tests.
+		System.out.println(getTestMethodName(iTestResult) + " test succeed");
 		ExtentTestManager.getTest().log(LogStatus.PASS, "Test passed");
 	}
 
 	public void onTestFailure(ITestResult iTestResult)
 	{
-		System.out.println("onTestFailure method " + getTestMethodName(iTestResult) + " failed");
-		// System.out.println(testcasenum + " execution has been failed.");
-		// Get driver from TestBase and assign to local webdriver variable.
-		// Object testClass = iTestResult.getInstance();
+		System.out.println(getTestMethodName(iTestResult) + " test failed");
 		WebDriver webDriver = TestBase.driver;
 
-		// Take base64Screenshot screenshot.
-		String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
+		try
+		{
+			String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
 
-		// Extentreports log and screenshot operations for failed tests.
-		ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
+			ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
 
-		ExtentTestManager.getTest().log(LogStatus.FAIL, iTestResult.getThrowable());
-		TestUtil.captureScreenshot(iTestResult.getMethod().getMethodName());
+			ExtentTestManager.getTest().log(LogStatus.FAIL, iTestResult.getThrowable());
+			TestUtil.captureScreenshot(iTestResult.getMethod().getMethodName());
+		}
+		catch (NullPointerException e)
+		{
+			System.out.println("*********************************************" + "\nNo active screen present to capture !!" + "\n1- Verify the device connection" + "\n2- Verify the Appium Server status\n*********************************************");
+		}
 	}
 
 	public void onTestSkipped(ITestResult iTestResult)
 	{
-		System.out.println("onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
-		// System.out.println(testcasenum + " execution has been skipped.");
-		// Extentreports log operation for skipped tests.
+		System.out.println(getTestMethodName(iTestResult) + " test skipped");
 		ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
 	}
 
