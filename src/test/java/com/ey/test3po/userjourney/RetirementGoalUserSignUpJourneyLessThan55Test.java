@@ -76,6 +76,7 @@ public class RetirementGoalUserSignUpJourneyLessThan55Test extends TestBase
 	public void retirementGoalLessThan55(String annualincome, String zip, String age, String goalname, String retage, String expperyr, String endyr, String incomepostret, String riskfactor, String plannedcontributionamt, String plannedinvamt, String delayduration, String username, String email, String pwd, String repwd, String suggestedcontribution, String suggestedaffordability1, String suggestedcurrentasset, String suggestedaffordability2, String suggestedaffordability3, String expctedretgae, String checkbox, String netincome, String testcaseid)
 	{
 		testcasenum = testcaseid;
+		System.out.println(testcaseid + " execution has been started.");
 
 		try
 		{

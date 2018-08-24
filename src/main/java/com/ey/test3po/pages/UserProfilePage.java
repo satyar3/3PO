@@ -2,7 +2,6 @@ package com.ey.test3po.pages;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
@@ -13,15 +12,17 @@ import io.appium.java_client.MobileBy;
 public class UserProfilePage extends TestBase
 {
 
-	public static Logger log = Logger.getLogger(UserProfilePage.class);
+	// public static Logger log = Logger.getLogger(UserProfilePage.class);
 
 	// Entering the details
 	public void fillUserProfileQuestionnaire(String annualIncome, String locaton, String age, String key)
 	{
 
-		log.info("Annual income of the user is : " + annualIncome);
-		log.info("Zip code is : " + locaton);
-		log.info("User age is : " + age);
+		/*
+		 * log.info("Annual income of the user is : " + annualIncome);
+		 * log.info("Zip code is : " + locaton); log.info("User age is : " + age);
+		 */
+
 		driver.findElement(By.id(prop.getProperty("annualIncome"))).click();
 		String upd_annualIncome = annualIncome.substring(0, annualIncome.length());
 

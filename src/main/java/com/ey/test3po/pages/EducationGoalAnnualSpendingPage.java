@@ -10,7 +10,7 @@ import com.ey.test3po.util.TestUtil;
 public class EducationGoalAnnualSpendingPage extends TestBase
 {
 
-	public ArrayList<Object> getPageContentOfAnnualSpending()
+	public ArrayList<Object> getPageContentOfAnnualSpending(String age, String planedcontribution, String plannedinvamount)
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -18,8 +18,63 @@ public class EducationGoalAnnualSpendingPage extends TestBase
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("annualspendingsubheader"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendingsuggestedplan"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("goalsubheader"))).isDisplayed());
-		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
-		pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+		
+		if(Integer.parseInt(age)<55)
+		{
+			if(plannedinvamount.length() != 0 )
+			{
+				if(Double.parseDouble(planedcontribution) != 0 && Double.parseDouble(plannedinvamount) != 0)
+				{
+					pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
+					pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+				}
+				else if(Double.parseDouble(planedcontribution) == 0 && Double.parseDouble(plannedinvamount) != 0)
+				{
+					pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
+					pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+				}
+				else
+				{
+					pagecontent.add(true);
+					pagecontent.add(true);
+				}
+			}
+			else
+			{
+				pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
+				pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+			}
+		}
+		else
+		{
+			if(planedcontribution.length() != 0 )
+			{
+				if(Double.parseDouble(planedcontribution) != 0 && Double.parseDouble(plannedinvamount) != 0)
+				{
+					pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
+					pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+				}
+				else if(Double.parseDouble(plannedinvamount) == 0 && Double.parseDouble(planedcontribution) != 0)
+				{
+					pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
+					pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+				}
+				else
+				{
+					pagecontent.add(true);
+					pagecontent.add(true);
+				}
+			}
+			else
+			{
+				pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
+				pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+			}
+		}	
+		
+		//pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).isDisplayed());
+		//pagecontent.add(driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
+		
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("anualspendingcontactbtn"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("haveqtnsannualspending"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("calladv"))).getText());
@@ -44,8 +99,60 @@ public class EducationGoalAnnualSpendingPage extends TestBase
 			pagecontent.add(new_plansuggestiontxt);
 		}
 
-		String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
-		pagecontent.add(legandtxt);
+
+		if(Integer.parseInt(age)<55)
+		{
+			if(plannedinvamount.length() != 0 )
+			{
+				if(Double.parseDouble(planedcontribution) != 0 && Double.parseDouble(plannedinvamount) != 0)
+				{
+					String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
+					pagecontent.add(legandtxt);
+				}
+				else if(Double.parseDouble(planedcontribution) == 0 && Double.parseDouble(plannedinvamount) != 0)
+				{
+					String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
+					pagecontent.add(legandtxt);
+				}
+				else
+				{
+					pagecontent.add("");
+				}
+			}
+			else
+			{
+				String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
+				pagecontent.add(legandtxt);
+			}
+		}
+		else
+		{
+			if(planedcontribution.length() != 0 )
+			{
+				if(Double.parseDouble(planedcontribution) != 0 && Double.parseDouble(plannedinvamount) != 0)
+				{
+					String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
+					pagecontent.add(legandtxt);
+				}
+				else if(Double.parseDouble(plannedinvamount) == 0 && Double.parseDouble(planedcontribution) != 0)
+				{
+					String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
+					pagecontent.add(legandtxt);
+				}
+				else
+				{
+					pagecontent.add("");
+				}
+			}
+			else
+			{
+				String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
+				pagecontent.add(legandtxt);
+			}
+		}
+		
+		//String legandtxt = driver.findElement(By.xpath(prop.getProperty("educationgoalannualspendinglagendtxt"))).getText();
+		//pagecontent.add(legandtxt);
 
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;

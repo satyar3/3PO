@@ -2,7 +2,6 @@ package com.ey.test3po.pages;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
@@ -13,7 +12,7 @@ import io.appium.java_client.MobileBy;
 public class LargePurchaseGoalActivityQuestionnairePage extends TestBase
 {
 
-	public static Logger log = Logger.getLogger(LargePurchaseGoalActivityQuestionnairePage.class);
+	//public static Logger log = Logger.getLogger(LargePurchaseGoalActivityQuestionnairePage.class);
 
 	public static String usergoalamount;
 	public static String goalduration;
@@ -22,11 +21,12 @@ public class LargePurchaseGoalActivityQuestionnairePage extends TestBase
 	public void fillGoalQuestionnaire(String goalname, String purchasingyear, String goalamount, String duration, String key)
 	{
 
-		log.info("Goal Name is : " + goalname);
-		log.info("Goal Purchasing Year is : " + purchasingyear);
-		log.info("Goal Amount is : " + goalamount);
-		log.info("Goal Duration is : " + duration);
-
+		/*
+		 * log.info("Goal Name is : " + goalname); log.info("Goal Purchasing Year is : "
+		 * + purchasingyear); log.info("Goal Amount is : " + goalamount);
+		 * log.info("Goal Duration is : " + duration);
+		 */
+		
 		driver.findElement(By.id(prop.getProperty("largepurchasegoalname"))).clear();
 		driver.findElement(By.id(prop.getProperty("largepurchasegoalname"))).sendKeys(goalname);
 		driver.findElement(By.id(prop.getProperty("largepurchasepurchasingyear"))).click();
@@ -51,23 +51,41 @@ public class LargePurchaseGoalActivityQuestionnairePage extends TestBase
 		
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
-		log.info("Successfully filled all the quesntionnaire");
+		//log.info("Successfully filled all the quesntionnaire");
 	}
 
 	public ArrayList<Object> getPageContentOfGoalQuestionnaire()
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
-		log.info("Large Purchase Goal Header is : " + driver.findElement(By.xpath(prop.getProperty("largepurchaseheader"))).getText());
-		log.info("Large Purchase Goal Sub-header is : " + driver.findElement(By.xpath(prop.getProperty("largepurchasesubheader"))).getText());
-		log.info("Large Purchase Goal Name field is displayed : " + driver.findElement(By.id(prop.getProperty("largepurchasegoalname"))).isDisplayed());
-		log.info("Large Purchase Goal Purchase year field is displayed : " + driver.findElement(By.id(prop.getProperty("largepurchasepurchasingyear"))).isDisplayed());
-		log.info("Large Purchase Goal Amount field is displayed : " + driver.findElement(By.id(prop.getProperty("largepurchasegoalamount"))).isDisplayed());
-		log.info("Large Purchase Goal Duration field is displayed : " + driver.findElement(By.id(prop.getProperty("largepurchaseage"))).isDisplayed());
-		log.info("Large Purchase Goal Name text is displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchasegoalnameplaceholdertext"))).getText());
-		log.info("Large Purchase Goal Purchase year text is displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchasegoalyearplaceholdertext"))).getText());
-		log.info("Large Purchase Goal Amount text is displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchasegoalamountplaceholdertext"))).getText());
-		log.info("Large Purchase Goal Duration text is displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchasegoalduratonplaceholdertext"))).getText());
+		/*
+		 * log.info("Large Purchase Goal Header is : " +
+		 * driver.findElement(By.xpath(prop.getProperty("largepurchaseheader"))).getText
+		 * ()); log.info("Large Purchase Goal Sub-header is : " +
+		 * driver.findElement(By.xpath(prop.getProperty("largepurchasesubheader"))).
+		 * getText()); log.info("Large Purchase Goal Name field is displayed : " +
+		 * driver.findElement(By.id(prop.getProperty("largepurchasegoalname"))).
+		 * isDisplayed());
+		 * log.info("Large Purchase Goal Purchase year field is displayed : " +
+		 * driver.findElement(By.id(prop.getProperty("largepurchasepurchasingyear"))).
+		 * isDisplayed()); log.info("Large Purchase Goal Amount field is displayed : " +
+		 * driver.findElement(By.id(prop.getProperty("largepurchasegoalamount"))).
+		 * isDisplayed()); log.info("Large Purchase Goal Duration field is displayed : "
+		 * +
+		 * driver.findElement(By.id(prop.getProperty("largepurchaseage"))).isDisplayed()
+		 * ); log.info("Large Purchase Goal Name text is displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty(
+		 * "largepurchasegoalnameplaceholdertext"))).getText());
+		 * log.info("Large Purchase Goal Purchase year text is displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty(
+		 * "largepurchasegoalyearplaceholdertext"))).getText());
+		 * log.info("Large Purchase Goal Amount text is displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty(
+		 * "largepurchasegoalamountplaceholdertext"))).getText());
+		 * log.info("Large Purchase Goal Duration text is displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty(
+		 * "largepurchasegoalduratonplaceholdertext"))).getText());
+		 */
 
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("largepurchaseheader"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("largepurchasesubheader"))).getText());

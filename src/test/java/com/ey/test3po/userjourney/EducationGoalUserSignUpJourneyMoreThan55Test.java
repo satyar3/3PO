@@ -72,6 +72,7 @@ public class EducationGoalUserSignUpJourneyMoreThan55Test extends TestBase
 	{
 
 		testcasenum = testcaseid;
+		System.out.println(testcaseid + " execution has been started.");
 
 		try
 		{
@@ -87,7 +88,7 @@ public class EducationGoalUserSignUpJourneyMoreThan55Test extends TestBase
 		catch (NumberFormatException e)
 		{
 			popup_flag_contribution = false;
-			;
+
 		}
 
 		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, testcaseid);
@@ -95,43 +96,147 @@ public class EducationGoalUserSignUpJourneyMoreThan55Test extends TestBase
 		goalactivity.fillGoalQuestionnaire(goalname, startyear, collegename, yearlyexp, collegeduration, testcaseid);
 		goalimportance.riskFactor(riskfactor, testcaseid);
 
-		ArrayList<Object> monthlyinvestmentpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
-
-		Assert.assertEquals("Setting Up Your Education Goal", monthlyinvestmentpagecontent.get(0), "Header mismatch in investment page");
-		Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
-		Assert.assertEquals(true, monthlyinvestmentpagecontent.get(2), "Suggested plan not displayed in the investment page");
-		Assert.assertEquals("How much have you already saved for education?", monthlyinvestmentpagecontent.get(3), "Investment subtext mismatch");
-		Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(4), "Planned investment placeholder text mismatch");
-		Assert.assertEquals(true, monthlyinvestmentpagecontent.get(5), "Investment inputbox is missing");
-		Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), monthlyinvestmentpagecontent.get(6), "Suggested current asset mismatch");
-
-		plannedinv.setMonthlyInvestmentAmount(plannedinvamt, testcaseid, age, popup_flag_inv, yearlyexp);
-		Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinv.pagecontentafterclick.get(0), "Updated label legand amount mismatch in investment page");
-
-		if (Double.parseDouble(plannedinvamt) < Double.parseDouble(suggestedcurrentasset) && Double.parseDouble(suggestedaffordability1) < Double.parseDouble(yearlyexp))
+		if (plannedcontributionamt.length() != 0)
 		{
-			Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), plannedinv.pagecontentafterclick.get(1), "Pop up amount mismatch");
-			ArrayList<Object> plannedinvsuggestionpagecontent = plannedinvsuggestions.getPageContentOfInvestmentSuggestionMoreThan55();
+			if ((Double.parseDouble(plannedinvamt) != 0 && Double.parseDouble(plannedcontributionamt) != 0) || (Double.parseDouble(plannedinvamt) != 0 && Double.parseDouble(plannedcontributionamt) == 0))
+			{
 
-			Assert.assertEquals("Setting Up Your Education Goal", plannedinvsuggestionpagecontent.get(0), "Header mismatch in investment suggestion page");
-			Assert.assertEquals("Planned Contributions", plannedinvsuggestionpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
-			Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(2), "Investment suggestion text is missing");
-			Assert.assertEquals("Too much? Too Little?" + "\n" + "Let us know and we'll rerun the numbers", plannedinvsuggestionpagecontent.get(3), "Sub-text mismmatch in investment page");
-			Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(4), "Contribution input field in missing");
-			Assert.assertEquals("Planned Monthly Contribution ($)", plannedinvsuggestionpagecontent.get(5), "Contribution input field placeholder text mismatch");
-			Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(6), "Check box is missning");
-			Assert.assertEquals("Adjust my contributions with salary growth", plannedinvsuggestionpagecontent.get(7), "Contribution suggestion is missing");
-			Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(8), "image is missing");
-			Assert.assertEquals(TestUtil.convNum(plannedinvamt), plannedinvsuggestionpagecontent.get(9), "Goal amount mismatch in contribution suggestion page");
-			Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedinvsuggestionpagecontent.get(10), "Suggested contribution mismatch in contribution suggestion page");
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinvsuggestionpagecontent.get(11), "Year value mismatch in contribution suggestion page");
+				ArrayList<Object> monthlyinvestmentpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
 
-			plannedinvsuggestions.setMonthlyContribution(plannedcontributionamt, testcaseid, popup_flag_contribution, age, checkbox, yearlyexp);
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), plannedinvsuggestions.pagecontentafterclick.get(0), "Label legand amount mismatch");
+				Assert.assertEquals("Setting Up Your Education Goal", monthlyinvestmentpagecontent.get(0), "Header mismatch in investment page");
+				Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+				Assert.assertEquals(true, monthlyinvestmentpagecontent.get(2), "Suggested plan not displayed in the investment page");
+				Assert.assertEquals("How much have you already saved for education?", monthlyinvestmentpagecontent.get(3), "Investment subtext mismatch");
+				Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(4), "Planned investment placeholder text mismatch");
+				Assert.assertEquals(true, monthlyinvestmentpagecontent.get(5), "Investment inputbox is missing");
+				Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), monthlyinvestmentpagecontent.get(6), "Suggested current asset mismatch");
+
+				plannedinv.setMonthlyInvestmentAmount(plannedinvamt, testcaseid, age, popup_flag_inv, yearlyexp, plannedcontributionamt, plannedinvamt);
+				Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinv.pagecontentafterclick.get(0), "Updated label legand amount mismatch in investment page");
+
+				if (Double.parseDouble(plannedinvamt) < Double.parseDouble(suggestedcurrentasset) && Double.parseDouble(suggestedaffordability1) < Double.parseDouble(yearlyexp))
+				{
+					Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), plannedinv.pagecontentafterclick.get(1), "Pop up amount mismatch");
+					ArrayList<Object> plannedinvsuggestionpagecontent = plannedinvsuggestions.getPageContentOfInvestmentSuggestionMoreThan55(plannedinvamt);
+
+					Assert.assertEquals("Setting Up Your Education Goal", plannedinvsuggestionpagecontent.get(0), "Header mismatch in investment suggestion page");
+					Assert.assertEquals("Planned Contributions", plannedinvsuggestionpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(2), "Investment suggestion text is missing");
+					Assert.assertEquals("Too much? Too Little?" + "\n" + "Let us know and we'll rerun the numbers", plannedinvsuggestionpagecontent.get(3), "Sub-text mismmatch in investment page");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(4), "Contribution input field in missing");
+					Assert.assertEquals("Planned Monthly Contribution ($)", plannedinvsuggestionpagecontent.get(5), "Contribution input field placeholder text mismatch");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(6), "Check box is missning");
+					Assert.assertEquals("Adjust my contributions with salary growth", plannedinvsuggestionpagecontent.get(7), "Contribution suggestion is missing");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(8), "image is missing");
+					Assert.assertEquals(TestUtil.convNum(plannedinvamt), plannedinvsuggestionpagecontent.get(9), "Goal amount mismatch in contribution suggestion page");
+					Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedinvsuggestionpagecontent.get(10), "Suggested contribution mismatch in contribution suggestion page");
+					Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinvsuggestionpagecontent.get(11), "Year value mismatch in contribution suggestion page");
+
+					plannedinvsuggestions.setMonthlyContribution(plannedcontributionamt, testcaseid, popup_flag_contribution, age, checkbox, yearlyexp, plannedcontributionamt, plannedinvamt);
+					Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), plannedinvsuggestions.pagecontentafterclick.get(0), "Label legand amount mismatch");
+
+				}
+			}
+			else if(Double.parseDouble(plannedinvamt) == 0 && Double.parseDouble(plannedcontributionamt) != 0)
+			{
+				ArrayList<Object> monthlyinvestmentpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
+
+				Assert.assertEquals("Setting Up Your Education Goal", monthlyinvestmentpagecontent.get(0), "Header mismatch in investment page");
+				Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+				Assert.assertEquals(true, monthlyinvestmentpagecontent.get(2), "Suggested plan not displayed in the investment page");
+				Assert.assertEquals("How much have you already saved for education?", monthlyinvestmentpagecontent.get(3), "Investment subtext mismatch");
+				Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(4), "Planned investment placeholder text mismatch");
+				Assert.assertEquals(true, monthlyinvestmentpagecontent.get(5), "Investment inputbox is missing");
+				Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), monthlyinvestmentpagecontent.get(6), "Suggested current asset mismatch");
+
+				plannedinv.setMonthlyInvestmentAmount(plannedinvamt, testcaseid, age, popup_flag_inv, yearlyexp, plannedcontributionamt, plannedinvamt);
+				//Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinv.pagecontentafterclick.get(0), "Updated label legand amount mismatch in investment page");
+
+				//if (Double.parseDouble(plannedinvamt) < Double.parseDouble(suggestedcurrentasset) && Double.parseDouble(suggestedaffordability1) < Double.parseDouble(yearlyexp))
+				//{
+					Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), plannedinv.pagecontentafterclick.get(0), "Pop up amount mismatch");
+					ArrayList<Object> plannedinvsuggestionpagecontent = plannedinvsuggestions.getPageContentOfInvestmentSuggestionMoreThan55(plannedinvamt);
+
+					Assert.assertEquals("Setting Up Your Education Goal", plannedinvsuggestionpagecontent.get(0), "Header mismatch in investment suggestion page");
+					Assert.assertEquals("Planned Contributions", plannedinvsuggestionpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(2), "Investment suggestion text is missing");
+					Assert.assertEquals("Too much? Too Little?" + "\n" + "Let us know and we'll rerun the numbers", plannedinvsuggestionpagecontent.get(3), "Sub-text mismmatch in investment page");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(4), "Contribution input field in missing");
+					Assert.assertEquals("Planned Monthly Contribution ($)", plannedinvsuggestionpagecontent.get(5), "Contribution input field placeholder text mismatch");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(6), "Check box is missning");
+					Assert.assertEquals("Adjust my contributions with salary growth", plannedinvsuggestionpagecontent.get(7), "Contribution suggestion is missing");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(8), "image is missing");
+					Assert.assertEquals(TestUtil.convNum(plannedinvamt), plannedinvsuggestionpagecontent.get(9), "Goal amount mismatch in contribution suggestion page");
+					Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedinvsuggestionpagecontent.get(10), "Suggested contribution mismatch in contribution suggestion page");
+					//Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinvsuggestionpagecontent.get(11), "Year value mismatch in contribution suggestion page");
+
+					plannedinvsuggestions.setMonthlyContribution(plannedcontributionamt, testcaseid, popup_flag_contribution, age, checkbox, yearlyexp, plannedcontributionamt, plannedinvamt);
+					Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), plannedinvsuggestions.pagecontentafterclick.get(0), "Label legand amount mismatch");
+
+				//}			
+			}
+			
+			else
+			{
+
+				ArrayList<Object> monthlyinvestmentpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
+
+				Assert.assertEquals("Setting Up Your Education Goal", monthlyinvestmentpagecontent.get(0), "Header mismatch in investment page");
+				Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+				Assert.assertEquals(true, monthlyinvestmentpagecontent.get(2), "Suggested plan not displayed in the investment page");
+				Assert.assertEquals("How much have you already saved for education?", monthlyinvestmentpagecontent.get(3), "Investment subtext mismatch");
+				Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(4), "Planned investment placeholder text mismatch");
+				Assert.assertEquals(true, monthlyinvestmentpagecontent.get(5), "Investment inputbox is missing");
+				Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), monthlyinvestmentpagecontent.get(6), "Suggested current asset mismatch");
+
+				plannedinv.setMonthlyInvestmentAmount(plannedinvamt, testcaseid, age, popup_flag_inv, yearlyexp, plannedcontributionamt, plannedinvamt);
+				//Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinv.pagecontentafterclick.get(0), "Updated label legand amount mismatch in investment page");
+
+				//if (Double.parseDouble(plannedinvamt) < Double.parseDouble(suggestedcurrentasset) && Double.parseDouble(suggestedaffordability1) < Double.parseDouble(yearlyexp))
+				//{
+					Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), plannedinv.pagecontentafterclick.get(0), "Pop up amount mismatch");
+					ArrayList<Object> plannedinvsuggestionpagecontent = plannedinvsuggestions.getPageContentOfInvestmentSuggestionMoreThan55(plannedinvamt);
+
+					Assert.assertEquals("Setting Up Your Education Goal", plannedinvsuggestionpagecontent.get(0), "Header mismatch in investment suggestion page");
+					Assert.assertEquals("Planned Contributions", plannedinvsuggestionpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(2), "Investment suggestion text is missing");
+					Assert.assertEquals("Too much? Too Little?" + "\n" + "Let us know and we'll rerun the numbers", plannedinvsuggestionpagecontent.get(3), "Sub-text mismmatch in investment page");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(4), "Contribution input field in missing");
+					Assert.assertEquals("Planned Monthly Contribution ($)", plannedinvsuggestionpagecontent.get(5), "Contribution input field placeholder text mismatch");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(6), "Check box is missning");
+					Assert.assertEquals("Adjust my contributions with salary growth", plannedinvsuggestionpagecontent.get(7), "Contribution suggestion is missing");
+					Assert.assertEquals(true, plannedinvsuggestionpagecontent.get(8), "image is missing");
+					Assert.assertEquals(TestUtil.convNum(plannedinvamt), plannedinvsuggestionpagecontent.get(9), "Goal amount mismatch in contribution suggestion page");
+					Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedinvsuggestionpagecontent.get(10), "Suggested contribution mismatch in contribution suggestion page");
+					//Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinvsuggestionpagecontent.get(11), "Year value mismatch in contribution suggestion page");
+
+					plannedinvsuggestions.setMonthlyContribution(plannedcontributionamt, testcaseid, popup_flag_contribution, age, checkbox, yearlyexp, plannedcontributionamt, plannedinvamt);
+					//Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), plannedinvsuggestions.pagecontentafterclick.get(0), "Label legand amount mismatch");
+
+				//}			
+			
+			}
+		}
+		
+		else
+		{
+
+			ArrayList<Object> monthlyinvestmentpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
+
+			Assert.assertEquals("Setting Up Your Education Goal", monthlyinvestmentpagecontent.get(0), "Header mismatch in investment page");
+			Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+			Assert.assertEquals(true, monthlyinvestmentpagecontent.get(2), "Suggested plan not displayed in the investment page");
+			Assert.assertEquals("How much have you already saved for education?", monthlyinvestmentpagecontent.get(3), "Investment subtext mismatch");
+			Assert.assertEquals("Planned Investments", monthlyinvestmentpagecontent.get(4), "Planned investment placeholder text mismatch");
+			Assert.assertEquals(true, monthlyinvestmentpagecontent.get(5), "Investment inputbox is missing");
+			Assert.assertEquals(TestUtil.convNum(suggestedcurrentasset), monthlyinvestmentpagecontent.get(6), "Suggested current asset mismatch");
+
+			plannedinv.setMonthlyInvestmentAmount(plannedinvamt, testcaseid, age, popup_flag_inv, yearlyexp, plannedcontributionamt, plannedinvamt);
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedinv.pagecontentafterclick.get(0), "Updated label legand amount mismatch in investment page");
 
 		}
-
-		ArrayList<Object> annualspendingpagecontent = annualspending.getPageContentOfAnnualSpending();
+		
+		ArrayList<Object> annualspendingpagecontent = annualspending.getPageContentOfAnnualSpending(age,plannedcontributionamt, plannedinvamt);
 
 		Assert.assertEquals("Setting Up Your Education Goal", annualspendingpagecontent.get(0), "Header mismatch in annual spending page");
 		Assert.assertEquals("Annual Spending", annualspendingpagecontent.get(1), "Sub-header mismatch in annual spending page");
@@ -145,10 +250,24 @@ public class EducationGoalUserSignUpJourneyMoreThan55Test extends TestBase
 		Assert.assertEquals("Sign up and view your recommended asset allocation", annualspendingpagecontent.get(9), "Asset allocation section is missing in annual spending page");
 		Assert.assertEquals(TestUtil.convNum(yearlyexp), TestUtil.convNum((String) annualspendingpagecontent.get(10)), "Yearly expense mismatch in annual spending page");
 
-		if (annualspendingpagecontent.size() == 13)
+		
+		if (annualspendingpagecontent.size() == 13 && plannedcontributionamt.length() == 0)
 		{
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page in suggested text");
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), annualspendingpagecontent.get(12), "Suggested affordability mismacth in annual spending page in label legand");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page suggested plan");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), annualspendingpagecontent.get(12), "Suggested affordability mismacth in annual spending page label legand");
+		}
+		else if (annualspendingpagecontent.size() == 13 && plannedcontributionamt.length() != 0 && (Double.parseDouble(plannedcontributionamt) != 0 && Double.parseDouble(plannedinvamt) != 0) || (Double.parseDouble(plannedcontributionamt) != 0 && Double.parseDouble(plannedinvamt) == 0))
+		{
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page suggested plan");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), annualspendingpagecontent.get(12), "Suggested affordability mismacth in annual spending page label legand");
+		}
+		else if (annualspendingpagecontent.size() == 13 && plannedcontributionamt.length() != 0 && (Double.parseDouble(plannedcontributionamt) == 0 && Double.parseDouble(plannedinvamt) != 0))
+		{
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability2), annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page suggested plan");
+		}
+		else if (annualspendingpagecontent.size() == 13 && (Double.parseDouble(plannedcontributionamt) == 0 && Double.parseDouble(plannedinvamt) == 0))
+		{
+			Assert.assertEquals("0", annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page suggested plan");
 		}
 		else
 		{
@@ -156,7 +275,7 @@ public class EducationGoalUserSignUpJourneyMoreThan55Test extends TestBase
 		}
 
 		annualspending.signUp();
-		System.out.println(testcaseid+" execution has been completed.");
+		System.out.println(testcaseid + " execution has been completed.");
 	}
 
 	@AfterMethod

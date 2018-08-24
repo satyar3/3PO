@@ -12,7 +12,7 @@ public class EducationPlannedInvPage extends TestBase
 
 	public ArrayList<Object> pagecontentafterclick = new ArrayList<Object>();
 
-	public ArrayList<Object> getPageContentOfPlannedInvestment()
+	public ArrayList<Object> getPageContentOfPlannedInvestment(String plannedcontributionamount)
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -24,7 +24,7 @@ public class EducationPlannedInvPage extends TestBase
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("invsuggestiontextbox"))).isDisplayed());
 
 		String suggestcurrentassettxt = driver.findElement(By.xpath(prop.getProperty("educationplannedinvsuggestedplan"))).getText();
-		String affordabilitytxt = driver.findElement(By.xpath(prop.getProperty("educationplannedinvlabellegand"))).getText();
+		
 
 		int dollarpos1 = suggestcurrentassettxt.indexOf("$");
 		int num1 = suggestcurrentassettxt.indexOf(" ", dollarpos1);
@@ -36,13 +36,18 @@ public class EducationPlannedInvPage extends TestBase
 
 		pagecontent.add(suggestcurrentasset);
 		pagecontent.add(suggestedcontribution);
-		pagecontent.add(affordabilitytxt);
-
+		
+		if(Double.parseDouble(plannedcontributionamount) > 0 )
+		{
+			String affordabilitytxt = driver.findElement(By.xpath(prop.getProperty("educationplannedinvlabellegand"))).getText();
+			pagecontent.add(affordabilitytxt);
+		}
+		
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}
 
-	public void setMonthlyInvestmentAmount(String amount, String key, String age, boolean flag, String goalamount)
+	public void setMonthlyInvestmentAmount(String amount, String key, String age, boolean flag, String goalamount, String plannedcontributionamount, String plannedinvamount)
 	{
 
 		driver.findElement(By.xpath(prop.getProperty("plannedinvtxtboxplaceholdertxt"))).click();
@@ -59,10 +64,28 @@ public class EducationPlannedInvPage extends TestBase
 		while (!driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestionamount"))).getText().equals("$" + TestUtil.convNum(upd_amount)));
 
 		driver.findElement(By.xpath(prop.getProperty("educationplannedinvheader"))).click();
-		pagecontentafterclick = getPageContentAfterClickOfPlannedInvestment(flag, age, goalamount);
+		//pagecontentafterclick = getPageContentAfterClickOfPlannedInvestment(flag, age, goalamount);
 		// driver.hideKeyboard();
 
-		System.out.println();
+		if (Integer.valueOf(age) < 55)
+		{
+			if (Double.parseDouble(plannedinvamount) != 0 || (Double.parseDouble(plannedinvamount) == 0 && Double.parseDouble(plannedcontributionamount) != 0))
+			{
+				pagecontentafterclick = getPageContentAfterClickOfPlannedInvestment(flag, age, goalamount);
+			}
+		}
+		else if (Integer.valueOf(age) >= 55)
+		{
+			if (Double.parseDouble(plannedinvamount) == 0)
+			{
+				pagecontentafterclick = getPageContentAfterClickZeroInvestment();
+			}
+			else
+			{
+				pagecontentafterclick = getPageContentAfterClickOfPlannedInvestment(flag, age, goalamount);
+			}
+		}
+		
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
@@ -99,6 +122,21 @@ public class EducationPlannedInvPage extends TestBase
 			String suggestedcontributioninpopup = popuptxt.substring(dollarpos2 + 1, num2);
 			pagecontent.add(suggestedcontributioninpopup);
 		}
+
+		// TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(),Thread.currentThread().getStackTrace()[1].getMethodName());
+		return pagecontent;
+	}
+	
+	public static ArrayList<Object> getPageContentAfterClickZeroInvestment()
+	{
+		ArrayList<Object> pagecontent = new ArrayList<Object>();
+
+		String popuptxt = driver.findElement(By.xpath(prop.getProperty("popup"))).getText();
+		int dollarpos2 = popuptxt.indexOf("$");
+		int num2 = popuptxt.indexOf("?", dollarpos2);
+
+		String suggestedcontributioninpopup = popuptxt.substring(dollarpos2 + 1, num2);
+		pagecontent.add(suggestedcontributioninpopup);
 
 		// TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(),Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;

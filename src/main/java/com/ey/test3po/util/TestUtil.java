@@ -83,7 +83,7 @@ public class TestUtil extends TestBase
 		final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MMM.dd.HH.mm.ss");
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-		String imagePath = currentDir + "/screenshots/" + testcasenum + "_" + testFunctionName + "_failed_" + sdf.format(timestamp) + ".png";
+		String imagePath = currentDir + "/Failed_screenshots/" + testcasenum + "_" + testFunctionName + "_failed_" + sdf.format(timestamp) + ".png";
 		File fname = new File(imagePath);
 		try
 		{

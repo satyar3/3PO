@@ -65,6 +65,7 @@ public class EmergencyUserSignUpJourneyTest extends TestBase
 	public void emergencyGoalUserJourney(String annualincome, String zip, String age, String goalname, String monthsofsaltosave, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestinvamount, String affordablemonthofsal, String testcaseid)
 	{
 		testcasenum = testcaseid;
+		System.out.println(testcaseid + " execution has been started.");
 
 		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, testcaseid);
 		selectgoal.goalChoice("Emergency Fund", testcaseid);

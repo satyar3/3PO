@@ -78,6 +78,7 @@ public class OtherGoalUserSignUpJourneyLessThan55Test extends TestBase
 	{
 
 		testcasenum = testcaseid;
+		System.out.println(testcaseid + " execution has been started.");
 
 		try
 		{

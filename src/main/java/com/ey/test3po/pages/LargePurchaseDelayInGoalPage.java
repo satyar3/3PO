@@ -2,7 +2,6 @@ package com.ey.test3po.pages;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
@@ -13,7 +12,7 @@ import io.appium.java_client.MobileBy;
 public class LargePurchaseDelayInGoalPage extends TestBase
 {
 
-	public static Logger log = Logger.getLogger(LargePurchaseDelayInGoalPage.class);
+	// public static Logger log = Logger.getLogger(LargePurchaseDelayInGoalPage.class);
 
 	public ArrayList<Object> pagecontentafterclick = new ArrayList<Object>();
 
@@ -22,29 +21,44 @@ public class LargePurchaseDelayInGoalPage extends TestBase
 
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
-		log.info("Large Purchase Delay Page Header : " + driver.findElement(By.xpath(prop.getProperty("largepurchasedelayingoalheader"))).getText());
-		log.info("Large Purchase Delay Page Sub-header : " + driver.findElement(By.xpath(prop.getProperty("largepurchasedelayingoalsubheader"))).getText());
-		log.info("Large Purchase Goal Delay suggestion displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchaselplaneeddelaysuggestedplan"))).isDisplayed());
-		log.info("When would you like to make purchase is displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchasedelaysub"))).getText());
-		log.info("Delay year Placeholder text : " + driver.findElement(By.xpath(prop.getProperty("delayyearplaceholdertxt"))).getText());
-		log.info("Delay Year text field is displayed : " + driver.findElement(By.id(prop.getProperty("invsuggestiontextbox"))).isDisplayed());
-
-		if (Integer.parseInt(age) < 55)
-		{
-			if ((Double.parseDouble(plannedcontributionamt) != 0 && Double.parseDouble(plannedinvamount) != 0) || (Double.parseDouble(plannedcontributionamt) == 0 && Double.parseDouble(plannedinvamount) != 0))
-			{
-				log.info("Large Purchase Label Legand is displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchasedelaylabellegand"))).isDisplayed());
-				log.info("Large Purchase Label Legend text is displayed : " + driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
-			}
-		}
-		else
-		{
-			if ((Double.parseDouble(plannedcontributionamt) != 0 && Double.parseDouble(plannedinvamount) != 0) || Double.parseDouble(plannedinvamount) == 0 && (Double.parseDouble(plannedcontributionamt) != 0))
-			{
-				log.info("Large Purchase Label Legand is displayed : " + driver.findElement(By.xpath(prop.getProperty("largepurchasedelaylabellegand"))).isDisplayed());
-				log.info("Large Purchase Label Legend text is displayed : " + driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed());
-			}
-		}
+		/*
+		 * log.info("Large Purchase Delay Page Header : " +
+		 * driver.findElement(By.xpath(prop.getProperty("largepurchasedelayingoalheader"
+		 * ))).getText()); log.info("Large Purchase Delay Page Sub-header : " +
+		 * driver.findElement(By.xpath(prop.getProperty(
+		 * "largepurchasedelayingoalsubheader"))).getText());
+		 * log.info("Large Purchase Goal Delay suggestion displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty(
+		 * "largepurchaselplaneeddelaysuggestedplan"))).isDisplayed());
+		 * log.info("When would you like to make purchase is displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty("largepurchasedelaysub"))).
+		 * getText()); log.info("Delay year Placeholder text : " +
+		 * driver.findElement(By.xpath(prop.getProperty("delayyearplaceholdertxt"))).
+		 * getText()); log.info("Delay Year text field is displayed : " +
+		 * driver.findElement(By.id(prop.getProperty("invsuggestiontextbox"))).
+		 * isDisplayed());
+		 * 
+		 * if (Integer.parseInt(age) < 55) { if
+		 * ((Double.parseDouble(plannedcontributionamt) != 0 &&
+		 * Double.parseDouble(plannedinvamount) != 0) ||
+		 * (Double.parseDouble(plannedcontributionamt) == 0 &&
+		 * Double.parseDouble(plannedinvamount) != 0)) {
+		 * log.info("Large Purchase Label Legand is displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty("largepurchasedelaylabellegand")
+		 * )).isDisplayed());
+		 * log.info("Large Purchase Label Legend text is displayed : " +
+		 * driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed(
+		 * )); } } else { if ((Double.parseDouble(plannedcontributionamt) != 0 &&
+		 * Double.parseDouble(plannedinvamount) != 0) ||
+		 * Double.parseDouble(plannedinvamount) == 0 &&
+		 * (Double.parseDouble(plannedcontributionamt) != 0)) {
+		 * log.info("Large Purchase Label Legand is displayed : " +
+		 * driver.findElement(By.xpath(prop.getProperty("largepurchasedelaylabellegand")
+		 * )).isDisplayed());
+		 * log.info("Large Purchase Label Legend text is displayed : " +
+		 * driver.findElement(By.id(prop.getProperty("labellegandsubtxt"))).isDisplayed(
+		 * )); } }
+		 */
 
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("largepurchasedelayingoalheader"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("largepurchasedelayingoalsubheader"))).getText());
@@ -76,7 +90,7 @@ public class LargePurchaseDelayInGoalPage extends TestBase
 		int pos2 = delayyeartxt.indexOf("year", pos1);
 
 		String delayyr = delayyeartxt.substring(pos1 + 4, pos2 - 1);
-		log.info("Suggested Delay year : " + delayyr);
+		// log.info("Suggested Delay year : " + delayyr);
 		pagecontent.add(delayyr);
 
 		if (Integer.parseInt(age) < 55)
@@ -84,7 +98,7 @@ public class LargePurchaseDelayInGoalPage extends TestBase
 			if ((Double.parseDouble(plannedcontributionamt) != 0 && Double.parseDouble(plannedinvamount) != 0) || (Double.parseDouble(plannedcontributionamt) == 0 && Double.parseDouble(plannedinvamount) != 0))
 			{
 				String labellegandtxt = driver.findElement(By.xpath(prop.getProperty("largepurchasedelaylabellegand"))).getText();
-				log.info("Label legand text before refresh : " + labellegandtxt);
+				// log.info("Label legand text before refresh : " + labellegandtxt);
 				pagecontent.add(labellegandtxt);
 			}
 		}
@@ -93,7 +107,7 @@ public class LargePurchaseDelayInGoalPage extends TestBase
 			if ((Double.parseDouble(plannedcontributionamt) != 0 && Double.parseDouble(plannedinvamount) != 0) || Double.parseDouble(plannedinvamount) == 0 && (Double.parseDouble(plannedcontributionamt) != 0))
 			{
 				String labellegandtxt = driver.findElement(By.xpath(prop.getProperty("largepurchasedelaylabellegand"))).getText();
-				log.info("Label legand text before refresh : " + labellegandtxt);
+				// log.info("Label legand text before refresh : " + labellegandtxt);
 				pagecontent.add(labellegandtxt);
 			}
 		}
@@ -110,10 +124,10 @@ public class LargePurchaseDelayInGoalPage extends TestBase
 		String upd_year = year.substring(0, year.length());
 		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"" + upd_year + "\"))")).click();
 		driver.findElement(By.xpath(prop.getProperty("largepurchasedelayingoalheader"))).click();
-		log.info("Delayed by years : " + upd_year);
+		// log.info("Delayed by years : " + upd_year);
 		pagecontentafterclick = getPageContentAfterClickOfDelayGoalScreen();
 		// driver.hideKeyboard();
-		
+
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}
@@ -137,7 +151,7 @@ public class LargePurchaseDelayInGoalPage extends TestBase
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
 		String affordabilitytxt = driver.findElement(By.xpath(prop.getProperty("largepurchasedelaylabellegand"))).getText();
-		log.info("Suggested affordability after page refresh : " + affordabilitytxt);
+		// log.info("Suggested affordability after page refresh : " + affordabilitytxt);
 		pagecontent.add(affordabilitytxt);
 
 		return pagecontent;

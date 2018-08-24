@@ -2,7 +2,6 @@ package com.ey.test3po.pages;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 
 import com.ey.test3po.testbase.TestBase;
@@ -12,7 +11,7 @@ public class GoalSelectionPage extends TestBase
 {
 
 	public static String goalXpath;
-	public static Logger log = Logger.getLogger(GoalSelectionPage.class);
+	//public static Logger log = Logger.getLogger(GoalSelectionPage.class);
 
 	public void goalChoice(String goal, String key)
 	{
@@ -22,7 +21,7 @@ public class GoalSelectionPage extends TestBase
 		String afterGoalXpath = "']"; // not available in config file
 		goalXpath = beforeGoalXpath + goal + afterGoalXpath;
 		driver.findElement(By.xpath(GoalSelectionPage.goalXpath)).click();
-		log.info("Goal Selected");
+		//log.info("Goal Selected");
 		
 		try
 		{

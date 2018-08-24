@@ -50,7 +50,7 @@ public class EducationGoalInvSuggestionsPage extends TestBase
 		return pagecontent;
 	}
 
-	public void setMonthlyContribution(String amount, String key, boolean flag, String age, String checkbox, String goalamount)
+	public void setMonthlyContribution(String amount, String key, boolean flag, String age, String checkbox, String goalamount, String plannedcontribution, String plannedinvamount)
 	{
 
 		String upd_amount = amount.substring(0, amount.length());
@@ -72,7 +72,26 @@ public class EducationGoalInvSuggestionsPage extends TestBase
 		{
 			driver.findElement(By.xpath(prop.getProperty("educationinvsuggestionheader"))).click();
 		}
-		pagecontentafterclick = getPageContentAfterClickOfInvestmentSuggestion(flag, age, goalamount);
+		//pagecontentafterclick = getPageContentAfterClickOfInvestmentSuggestion(flag, age, goalamount);
+		
+		if (Integer.parseInt(age) < 55)
+		{
+			if (Double.parseDouble(plannedcontribution) != 0)
+			{
+				pagecontentafterclick = getPageContentAfterClickOfInvestmentSuggestion(flag, age, goalamount);
+			}
+			else
+			{
+				pagecontentafterclick = getPageContentAfterClickZeroContribution(flag, age, goalamount);
+			}
+		}
+		else if (Integer.parseInt(age) >= 55)
+		{
+			if (Double.parseDouble(plannedcontribution) != 0 || (Double.parseDouble(plannedinvamount) != 0 && Double.parseDouble(plannedcontribution) == 0))
+			{
+				pagecontentafterclick = getPageContentAfterClickOfInvestmentSuggestion(flag, age, goalamount);
+			}
+		}
 
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
@@ -97,8 +116,22 @@ public class EducationGoalInvSuggestionsPage extends TestBase
 
 		return pagecontent;
 	}
+	
+	public static ArrayList<Object> getPageContentAfterClickZeroContribution(boolean flag, String age, String goalamount)
+	{
+		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
-	public ArrayList<Object> getPageContentOfInvestmentSuggestionMoreThan55()
+		String popuptxt = driver.findElement(By.xpath(prop.getProperty("popup"))).getText();
+		int dollarpos2 = popuptxt.indexOf("$");
+		int num2 = popuptxt.indexOf(" ", dollarpos2);
+
+		String suggestedcontributioninpopup = popuptxt.substring(dollarpos2 + 1, num2);
+		pagecontent.add(suggestedcontributioninpopup);
+
+		return pagecontent;
+	}
+
+	public ArrayList<Object> getPageContentOfInvestmentSuggestionMoreThan55(String plannedinvamount)
 	{
 		ArrayList<Object> pagecontent = new ArrayList<Object>();
 
@@ -126,9 +159,11 @@ public class EducationGoalInvSuggestionsPage extends TestBase
 		pagecontent.add(annualincome);
 		pagecontent.add(suggestedcontribution);
 
-		String affordabilitytxt = driver.findElement(By.xpath(prop.getProperty("educationplannedinvlabellegand"))).getText();
-		pagecontent.add(affordabilitytxt);
-
+		if (Double.parseDouble(plannedinvamount) > 0)
+		{
+			String affordabilitytxt = driver.findElement(By.xpath(prop.getProperty("educationplannedinvlabellegand"))).getText();
+			pagecontent.add(affordabilitytxt);
+		}
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}

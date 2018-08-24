@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="com.ey.test3po.util.TestListener"/>
+    <listener class-name="com.ey.test3po.retryanalyzer.AnnotationTransformer"/>
+  </listeners>
+  <test thread-count="5" name="EducationGoalUserSignUpJourneyMoreThan55Test(failed)">
     <classes>
-      <class name="com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test">
+      <class name="com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyMoreThan55Test">
         <methods>
+          <include name="educationGoalMoreThan55" invocation-numbers="6 6 6 7 7"/>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="educationGoalLessThan55" invocation-numbers="1"/>
         </methods>
-      </class> <!-- com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test -->
+      </class> <!-- com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyMoreThan55Test -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- EducationGoalUserSignUpJourneyMoreThan55Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
