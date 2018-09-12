@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
-  <listeners>
-    <listener class-name="com.ey.test3po.util.TestListener"/>
-    <listener class-name="com.ey.test3po.retryanalyzer.AnnotationTransformer"/>
-  </listeners>
-  <test thread-count="5" name="EducationGoalUserSignUpJourneyLessThan55Test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test">
+      <class name="com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyLessThan55Test">
         <methods>
+          <include name="retirementGoalLessThan55"/>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="educationGoalLessThan55"/>
         </methods>
-      </class> <!-- com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test -->
+      </class> <!-- com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyLessThan55Test -->
     </classes>
-  </test> <!-- EducationGoalUserSignUpJourneyLessThan55Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

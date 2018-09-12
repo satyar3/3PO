@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
@@ -63,17 +64,38 @@ public class TestBase
 		//service = AppiumDriverLocalService.buildDefaultService();
 		//service.start();
 		
+		// try
+		// {
+		// AppiumServerStartStop.appiumStart();
+		// }
+		// catch (Exception e)
+		// {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		
 		capabilities = new DesiredCapabilities();
 		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, prop.getProperty("platformName"));
 		capabilities.setCapability(CapabilityType.VERSION, prop.getProperty("PlatformVersion"));
 		capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
 		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, prop.getProperty("DeviceName"));
+		
+		//Pattern lock and pattern number in sequence
+		//capabilities.setCapability("unlockType", "pattern");
+		//capabilities.setCapability("unlockKey", "12487");
+		
 		capabilities.setCapability("appPackage", prop.getProperty("appPackage"));
 		capabilities.setCapability("appActivity", prop.getProperty("appActivity"));
 		capabilities.setCapability("unicodeKeyboard", "true");
 		capabilities.setCapability("resetKeyboard", "true");
 
 		driver = new AndroidDriver(new URL(prop.getProperty("url")), capabilities);
+		
+		if(driver.isDeviceLocked())
+		{
+			driver.unlockDevice();
+		}		
+		
 		driver.manage().timeouts().implicitlyWait(Integer.parseInt(prop.getProperty("implicitlyWait")), TimeUnit.SECONDS);
 	}
 
@@ -89,4 +111,5 @@ public class TestBase
 	{
 		new WebDriverWait(driver, 3).ignoring(NoSuchElementException.class).until(ExpectedConditions.visibilityOf(element));
 	}
+	
 }

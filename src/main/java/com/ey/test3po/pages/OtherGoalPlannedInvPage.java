@@ -63,7 +63,9 @@ public class OtherGoalPlannedInvPage extends TestBase
 			driver.findElement(By.xpath(prop.getProperty("plannedinvtxtboxplaceholdertxt"))).sendKeys(TestUtil.convNum(upd_amount) + "");
 		}
 		while (!driver.findElement(By.xpath(prop.getProperty("othergoalplannedinvsuggestionamount"))).getText().equals("$" + TestUtil.convNum(upd_amount)));
-		driver.findElement(By.xpath(prop.getProperty("othergoalplannedinvheader"))).click();
+		
+		//driver.hideKeyboard();
+		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		// driver.hideKeyboard();
 
 		if (Integer.valueOf(age) < 55)

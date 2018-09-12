@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test">
+      <class name="com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyLessThan55Test">
         <methods>
+          <include name="retirementGoalLessThan55"/>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="educationGoalLessThan55" invocation-numbers="1"/>
         </methods>
-      </class> <!-- com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test -->
+      </class> <!-- com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyLessThan55Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

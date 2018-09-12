@@ -50,7 +50,7 @@ public class EducationGoalActivityQuestionnairePageTest extends TestBase
 	}
 
 	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void educationGoalActivityQuestionnaire(String annualincome, String zip, String age, String goalname, String startyear, String collegename, String yearlyexp, String collegeduration, String riskfactor, String plannedcontributionamt, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestedcontribution, String suggestedaffordability1, String suggestedcurrentasset, String suggestedaffordability2, String checkbox, String key)
+	public void educationGoalActivityQuestionnaire(String annualincome, String zip, String age, String goalname, String startyear, String collegename, String yearlyexp, String collegeduration, String riskfactor, String plannedcontributionamt, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestedcontribution, String suggestedaffordability1, String suggestedcurrentasset, String suggestedaffordability2, String checkbox, String key, String enabled)
 	{
 		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, key);
 		selectgoal.goalChoice("Education", key);

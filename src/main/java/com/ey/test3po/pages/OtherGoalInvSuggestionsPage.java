@@ -68,7 +68,8 @@ public class OtherGoalInvSuggestionsPage extends TestBase
 		}
 		else
 		{
-			driver.findElement(By.xpath(prop.getProperty("othergoalinvsuggestionheader"))).click();
+			//driver.hideKeyboard();
+			driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		}
 
 		if (Integer.parseInt(age) < 55)

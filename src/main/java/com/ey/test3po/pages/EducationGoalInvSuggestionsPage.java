@@ -70,7 +70,7 @@ public class EducationGoalInvSuggestionsPage extends TestBase
 		}
 		else
 		{
-			driver.findElement(By.xpath(prop.getProperty("educationinvsuggestionheader"))).click();
+			driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		}
 		//pagecontentafterclick = getPageContentAfterClickOfInvestmentSuggestion(flag, age, goalamount);
 		

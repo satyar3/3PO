@@ -64,7 +64,7 @@ public class RetirementGoalPlannedInvPage extends TestBase
 		while (!driver.findElement(By.xpath(prop.getProperty("retirementplannedinvtextbox"))).getText().equals("$" + TestUtil.convNum(upd_amount)));
 
 		// driver.findElement(By.xpath(prop.getProperty("plannedinvtxtboxplaceholdertxt"))).sendKeys(TestUtil.convNum(upd_amount)+"");
-		driver.findElement(By.xpath(prop.getProperty("retirementgoalplannedinvheader"))).click();
+		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		// driver.hideKeyboard();
 
 		if (Integer.valueOf(age) < 55)

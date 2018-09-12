@@ -69,7 +69,7 @@ public class EducationGoalUserSignUpJourneyLessThan55Test extends TestBase
 	}
 
 	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void educationGoalLessThan55(String annualincome, String zip, String age, String goalname, String startyear, String collegename, String yearlyexp, String collegeduration, String riskfactor, String plannedcontributionamt, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestedcontribution, String suggestedaffordability1, String suggestedcurrentasset, String suggestedaffordability2, String checkbox, String testcaseid)
+	public void educationGoalLessThan55(String annualincome, String zip, String age, String goalname, String startyear, String collegename, String yearlyexp, String collegeduration, String riskfactor, String plannedcontributionamt, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestedcontribution, String suggestedaffordability1, String suggestedcurrentasset, String suggestedaffordability2, String checkbox, String testcaseid, String enabled)
 	{
 		testcasenum = testcaseid;
 		System.out.println(testcaseid + " execution has been started.");

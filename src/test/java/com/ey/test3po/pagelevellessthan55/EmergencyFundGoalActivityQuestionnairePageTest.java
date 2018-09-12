@@ -50,7 +50,7 @@ public class EmergencyFundGoalActivityQuestionnairePageTest extends TestBase
 	}
 
 	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void emergencyFundGoalActivityQuestionnaire(String annualincome, String zip, String age, String goalname, String monthsofsaltosave, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestinvamount, String affordablemonthofsal, String key)
+	public void emergencyFundGoalActivityQuestionnaire(String annualincome, String zip, String age, String goalname, String monthsofsaltosave, String plannedinvamt, String username, String email, String pwd, String repwd, String suggestinvamount, String affordablemonthofsal, String key, String enabled)
 	{
 		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, key);
 		selectgoal.goalChoice("Emergency Fund", key);

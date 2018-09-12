@@ -5,15 +5,15 @@
     <listener class-name="com.ey.test3po.util.TestListener"/>
     <listener class-name="com.ey.test3po.retryanalyzer.AnnotationTransformer"/>
   </listeners>
-  <test thread-count="5" name="EducationGoalUserSignUpJourneyLessThan55Test(failed)">
+  <test thread-count="5" name="RetirementGoalUserSignUpJourneyLessThan55Test(failed)">
     <classes>
-      <class name="com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test">
+      <class name="com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyLessThan55Test">
         <methods>
+          <include name="retirementGoalLessThan55"/>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="educationGoalLessThan55"/>
         </methods>
-      </class> <!-- com.ey.test3po.userjourney.EducationGoalUserSignUpJourneyLessThan55Test -->
+      </class> <!-- com.ey.test3po.userjourney.RetirementGoalUserSignUpJourneyLessThan55Test -->
     </classes>
-  </test> <!-- EducationGoalUserSignUpJourneyLessThan55Test(failed) -->
+  </test> <!-- RetirementGoalUserSignUpJourneyLessThan55Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

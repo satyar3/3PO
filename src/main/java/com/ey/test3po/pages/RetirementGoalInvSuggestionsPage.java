@@ -71,7 +71,7 @@ public class RetirementGoalInvSuggestionsPage extends TestBase
 		}
 		else
 		{
-			driver.findElement(By.xpath(prop.getProperty("retirementinvsugestionheader"))).click();
+			driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		}
 
 		// driver.hideKeyboard();

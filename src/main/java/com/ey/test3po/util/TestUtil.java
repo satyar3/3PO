@@ -28,6 +28,8 @@ public class TestUtil extends TestBase
 	static String TESTDATA_SHEET_PATH = "src\\main\\java\\com\\ey\\test3po\\testdata\\TestData.xlsx";
 	static Workbook book;
 	static Sheet sheet;
+	
+	
 
 	public static Object[][] getTestData(String sheetName)
 	{
@@ -71,9 +73,46 @@ public class TestUtil extends TestBase
 					data[i][k] = "";
 				}
 			}
+
 		}
 
-		return data;
+		int dataCol = data[0].length - 1;
+
+		// System.out.println(data[0][oldCol]);
+
+		int newDataRow = 0;
+		for (int i = 0; i < data.length; i++)
+		{
+			if (data[i][dataCol].toString().equals("Y"))
+			{
+				newDataRow = newDataRow + 1;
+			}
+		}
+
+		// System.out.println(newRow);
+
+		Object newdata[][] = new Object[newDataRow][data[0].length];
+		int row = 0;
+		int col = 0;
+
+		for (int i = 0; i < data.length; i++)
+		{
+			if (data[i][dataCol].toString().equals("Y"))
+			{
+				for (int j = 0; j < data[0].length; j++)
+				{
+
+					newdata[row][col] = data[i][j];
+					//System.out.println(newdata[row][col]);
+					col++;
+				}
+				col = 0;
+				row++;
+			}
+		}
+
+		return newdata;
+
 	}
 
 	public static void captureScreenshot(String testFunctionName)

@@ -108,7 +108,7 @@ public class LargePurchaseInvSuggestionsPage extends TestBase
 		}
 		else
 		{
-			driver.findElement(By.xpath(prop.getProperty("largepurchaseinvsuggestionheader"))).click();
+			driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		}
 
 		// driver.hideKeyboard();

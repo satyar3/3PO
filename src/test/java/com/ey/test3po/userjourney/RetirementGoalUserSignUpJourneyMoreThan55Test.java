@@ -71,7 +71,7 @@ public class RetirementGoalUserSignUpJourneyMoreThan55Test extends TestBase
 	}
 
 	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void retirementGoalMoreThan55(String annualincome, String zip, String age, String goalname, String retage, String expperyr, String endyr, String incomepostret, String riskfactor, String plannedinvamt, String plannedcontributionamt, String delayduration, String username, String email, String pwd, String repwd, String suggestedcurrentasset, String suggestedaffordability1, String suggestedcontribution, String suggestedaffordability2, String suggestedaffordability3, String expctedretgae, String checkbox, String netincome, String testcaseid)
+	public void retirementGoalMoreThan55(String annualincome, String zip, String age, String goalname, String retage, String expperyr, String endyr, String incomepostret, String riskfactor, String plannedinvamt, String plannedcontributionamt, String delayduration, String username, String email, String pwd, String repwd, String suggestedcurrentasset, String suggestedaffordability1, String suggestedcontribution, String suggestedaffordability2, String suggestedaffordability3, String expctedretgae, String checkbox, String netincome, String testcaseid, String enabled)
 	{
 		testcasenum = testcaseid;
 		System.out.println(testcaseid + " execution has been started.");
@@ -364,7 +364,8 @@ public class RetirementGoalUserSignUpJourneyMoreThan55Test extends TestBase
 			}
 			else if (pagecontentannualSepnding.size() == 13 && (Double.parseDouble(plannedcontributionamt) == 0 && Double.parseDouble(plannedinvamt) == 0))
 			{
-				Assert.assertEquals("0", pagecontentannualSepnding.get(11), "Suggested affordability mismacth in annual spending page in suggested text");
+				//Changed to find the label legand if ret income post retirement is provided, if post ret income is 0, the given 0 in the suggested affordability screen.
+				Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), pagecontentannualSepnding.get(11), "Suggested affordability mismacth in annual spending page in suggested text");
 				// Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), pagecontentAnnualSepnding.get(12), "Suggested affordability mismacth in annual spending page in label legand");
 			}
 			else

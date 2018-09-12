@@ -68,7 +68,7 @@ public class EducationGoalUserSignUpJourneyMoreThan55Test extends TestBase
 	}
 
 	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void educationGoalMoreThan55(String annualincome, String zip, String age, String goalname, String startyear, String collegename, String yearlyexp, String collegeduration, String riskfactor, String plannedinvamt, String plannedcontributionamt, String username, String email, String pwd, String repwd, String suggestedcurrentasset, String suggestedaffordability1, String suggestedcontribution, String suggestedaffordability2, String checkbox, String testcaseid)
+	public void educationGoalMoreThan55(String annualincome, String zip, String age, String goalname, String startyear, String collegename, String yearlyexp, String collegeduration, String riskfactor, String plannedinvamt, String plannedcontributionamt, String username, String email, String pwd, String repwd, String suggestedcurrentasset, String suggestedaffordability1, String suggestedcontribution, String suggestedaffordability2, String checkbox, String testcaseid, String enabled)
 	{
 
 		testcasenum = testcaseid;

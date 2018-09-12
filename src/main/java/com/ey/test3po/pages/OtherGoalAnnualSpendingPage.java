@@ -60,7 +60,7 @@ public class OtherGoalAnnualSpendingPage extends TestBase
 		
 			int dolstartpos2 = plansuggestiontxt.indexOf("$",dolstartpos1+1);
 			String affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2+1, plansuggestiontxt.length());
-			pagecontent.add(affordabilityamtonscreenheadr);
+			pagecontent.add(affordabilityamtonscreenheadr.trim());
 		}
 		else 
 		{

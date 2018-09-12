@@ -102,7 +102,7 @@ public class LargePurchasePlannedInvPage extends TestBase
 		}
 		while (!driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestionamount"))).getText().equals("$" + TestUtil.convNum(upd_amount)));
 
-		driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvheader"))).click();
+		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 
 		// driver.hideKeyboard();
 

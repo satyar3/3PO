@@ -63,7 +63,7 @@ public class EducationPlannedInvPage extends TestBase
 		}
 		while (!driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestionamount"))).getText().equals("$" + TestUtil.convNum(upd_amount)));
 
-		driver.findElement(By.xpath(prop.getProperty("educationplannedinvheader"))).click();
+		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		//pagecontentafterclick = getPageContentAfterClickOfPlannedInvestment(flag, age, goalamount);
 		// driver.hideKeyboard();
 

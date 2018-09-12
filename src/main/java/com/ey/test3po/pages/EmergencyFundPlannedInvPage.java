@@ -48,7 +48,7 @@ public class EmergencyFundPlannedInvPage extends TestBase
 		}
 		while (!driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestionamount"))).getText().equals("$" + TestUtil.convNum(upd_amount)));
 
-		driver.findElement(By.xpath(prop.getProperty("emegencyplannedinvheader"))).click();
+		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 		// driver.hideKeyboard();
 		pagecontentafterclick = getPageContentAfterClickOfPlannedInvestment();
 		
