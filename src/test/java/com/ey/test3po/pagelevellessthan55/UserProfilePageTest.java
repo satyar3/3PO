@@ -1,6 +1,6 @@
 package com.ey.test3po.pagelevellessthan55;
 
-import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import org.testng.Assert;
@@ -17,34 +17,34 @@ import com.ey.test3po.util.TestUtil;
 public class UserProfilePageTest extends TestBase
 {
 
+	WelcomePage homepage;
+	UserProfilePage userProfile;
+	String sheetName = "UserProfile";
+	
 	UserProfilePageTest()
 	{
 		super();
 	}
 
-	WelcomePage homepage;
-	UserProfilePage userProfile;
-	String sheetName = "UserProfile";
-
 	@BeforeMethod
-	public void setUp() throws IOException
+	public void setUp() throws MalformedURLException
 	{
 		initialization();
 		homepage = new WelcomePage();
 		userProfile = new UserProfilePage();
-		homepage.getStartedButtonClcik();
+		homepage.getStartedButtonClcik();		
 	}
 
-	@DataProvider
+	@DataProvider(name = "getQuestionnaireTestData")
 	public Object[][] getQuestionnaireTestData()
 	{
 		Object ob[][] = TestUtil.getTestData(sheetName);
 		return ob;
 	}
-
-	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void setUserprofile(String annualincome, String zip, String age, String key)
-	{
+	
+	@Test(priority = 1, dataProvider = "getQuestionnaireTestData",enabled = true)
+	public void setUserprofile(String annualincome, String zip, String age, String testcaseid, String enabled)
+	{		
 		ArrayList<Object> screencontent = userProfile.getPageContentOfUserProfile();
 
 		Assert.assertEquals("Let's get to know you!", screencontent.get(0));
@@ -56,11 +56,10 @@ public class UserProfilePageTest extends TestBase
 		Assert.assertEquals("Annual Income ($)", screencontent.get(6));
 		Assert.assertEquals("Location(Zip)", screencontent.get(7));
 		Assert.assertEquals("Age", screencontent.get(8));
-
-		userProfile.fillUserProfileQuestionnaire(annualincome, zip, age, key);
-		// Assert.assertEquals(".activity.DashBoardActivity", findCurrentActivity());
+		
+		userProfile.fillUserProfileQuestionnaire(annualincome, zip, age, testcaseid);
 	}
-
+	
 	@AfterMethod
 	public void tearDwon()
 	{

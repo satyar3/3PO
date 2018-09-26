@@ -47,7 +47,7 @@ public class GoalSelectionPageTest extends TestBase
 	}
 
 	@Test(priority = 1, dataProvider = "getQuestionnaireTestData")
-	public void goalSelection(String annualincome, String zip, String age, String goal, String key)
+	public void goalSelection(String annualincome, String zip, String age, String goal, String key, String enabled)
 	{
 		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, key);
 

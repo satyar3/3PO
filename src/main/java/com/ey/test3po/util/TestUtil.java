@@ -89,7 +89,7 @@ public class TestUtil extends TestBase
 			}
 		}
 
-		// System.out.println(newRow);
+		 System.out.println("Number test cases to be executed (i.e. with flag \"Y\") = "+newDataRow);
 
 		Object newdata[][] = new Object[newDataRow][data[0].length];
 		int row = 0;

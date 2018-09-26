@@ -38,6 +38,7 @@ public class Retry extends TestBase implements IRetryAnalyzer
 	{
 		@SuppressWarnings("unused")
 		Object testClass = iTestResult.getInstance();
+
 		String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 		ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
 	}

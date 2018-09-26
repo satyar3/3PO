@@ -22,7 +22,9 @@ public class UserProfilePage extends TestBase
 		 * log.info("Annual income of the user is : " + annualIncome);
 		 * log.info("Zip code is : " + locaton); log.info("User age is : " + age);
 		 */
-
+		
+		isAlertPresent();
+		
 		driver.findElement(By.id(prop.getProperty("annualIncome"))).click();
 		String upd_annualIncome = annualIncome.substring(0, annualIncome.length());
 
@@ -46,6 +48,7 @@ public class UserProfilePage extends TestBase
 
 	public ArrayList<Object> getPageContentOfUserProfile()
 	{
+		isAlertPresent();
 		ArrayList<Object> screenconetent = new ArrayList<Object>();
 
 		screenconetent.add(driver.findElement(By.xpath(prop.getProperty("userprofileheader"))).getText());
@@ -123,4 +126,16 @@ public class UserProfilePage extends TestBase
 
 		return list;
 	}
+	
+	
+	public void isAlertPresent()
+	{
+		while (driver.findElements(MobileBy.xpath("//*[@class='android.widget.Button'][2]")).size() > 0)
+
+		{
+			driver.findElement(MobileBy.xpath("//*[@class='android.widget.Button'][2]")).click();
+		}
+
+	}
+	
 }

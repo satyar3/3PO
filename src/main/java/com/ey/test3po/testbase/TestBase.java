@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
@@ -37,7 +36,7 @@ public class TestBase
 	// AppiumServiceBuilder builder;
 
 	Logger log = Logger.getLogger(TestBase.class);
-
+	
 	public TestBase()
 	{
 		try
@@ -82,8 +81,8 @@ public class TestBase
 		
 		//Pattern lock and pattern number in sequence
 		//capabilities.setCapability("unlockType", "pattern");
-		//capabilities.setCapability("unlockKey", "12487");
-		
+		//capabilities.setCapability("unlockKey", "12487");		
+				
 		capabilities.setCapability("appPackage", prop.getProperty("appPackage"));
 		capabilities.setCapability("appActivity", prop.getProperty("appActivity"));
 		capabilities.setCapability("unicodeKeyboard", "true");
@@ -110,6 +109,5 @@ public class TestBase
 	public void explicitWait(WebElement element)
 	{
 		new WebDriverWait(driver, 3).ignoring(NoSuchElementException.class).until(ExpectedConditions.visibilityOf(element));
-	}
-	
+	}	
 }

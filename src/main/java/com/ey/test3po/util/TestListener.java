@@ -2,7 +2,6 @@ package com.ey.test3po.util;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -48,12 +47,10 @@ public class TestListener extends TestBase implements ITestListener
 	public void onTestFailure(ITestResult iTestResult)
 	{
 		System.out.println(getTestMethodName(iTestResult) + " test failed");
-		WebDriver webDriver = TestBase.driver;
 
 		try
 		{
-			String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
-
+			String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
 
 			ExtentTestManager.getTest().log(LogStatus.FAIL, iTestResult.getThrowable());
@@ -61,7 +58,9 @@ public class TestListener extends TestBase implements ITestListener
 		}
 		catch (NullPointerException e)
 		{
-			System.out.println("*********************************************" + "\nNo active screen present to capture !!" + "\n1- Verify the device connection" + "\n2- Verify the Appium Server status\n*********************************************");
+			System.out.println("*********************************************" 
+					+ "\nNo active screen present to capture !!" + "\n1- Verify the device connection" 
+					+ "\n2- Verify the Appium Server status\n*********************************************");
 		}
 	}
 
