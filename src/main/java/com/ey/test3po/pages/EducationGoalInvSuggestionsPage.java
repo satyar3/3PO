@@ -1,7 +1,6 @@
 package com.ey.test3po.pages;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.openqa.selenium.By;
 
@@ -140,7 +139,7 @@ public class EducationGoalInvSuggestionsPage extends TestBase
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationinvsuggestionheader"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationinvsuggestionsubheader"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationsuggestedplanMoreThan55"))).isDisplayed());
-		System.out.println(driver.findElement(By.xpath(prop.getProperty("educationsuggestedplanMoreThan55"))).getText());
+		//System.out.println(driver.findElement(By.xpath(prop.getProperty("educationsuggestedplanMoreThan55"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationinvsuggestionssuggestedplansub"))).getText());
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("invsuggestiontextbox"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("educationinvsuggestioneditbox"))).getText());
@@ -163,27 +162,27 @@ public class EducationGoalInvSuggestionsPage extends TestBase
 
 		if (Double.parseDouble(plannedinvamount) > 0)
 		{
-			String affordabilitytxt = driver.findElement(By.xpath(prop.getProperty("educationplannedinvlabellegand"))).getText();
+			String affordabilitytxt = driver.findElement(By.xpath(prop.getProperty("labellegandInvSuggestion"))).getText();
 			pagecontent.add(affordabilitytxt);
 		}
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		return pagecontent;
 	}
 	
-	//Incomplete code
-	public void getSuggestedTextInvSuggestion(String goalduration, String goalstartyear, String goalamount, String suggestedcontribution)
-	{
-		String text = driver.findElement(By.xpath(prop.getProperty("educationinvsuggestionsuggestedplan"))).getText();
-		int currentyear = new Date().getYear();
-		
-		if(Integer.parseInt(goalduration) == 1 && Integer.parseInt(goalstartyear) > currentyear+1)
-		{
-			String suggestedtext = "\"To reach your goal of "+goalamount+", we suggest you save "+suggestedcontribution+" per month from today till "+(Integer.parseInt(goalstartyear)-1);
-		}
-		else if(Integer.parseInt(goalduration) == 1 && Integer.parseInt(goalstartyear) == currentyear+1)
-		{
-			String suggestedtext = "\"To reach your goal of "+goalamount+", we suggest you save "+suggestedcontribution+" per month from today till "+(Integer.parseInt(goalstartyear)-1);
-		}
-	}
+	//Incomplete code	
+	//public void getSuggestedTextInvSuggestion(String goalduration, String goalstartyear, String goalamount, String suggestedcontribution)
+	//{
+	//	String text = driver.findElement(By.xpath(prop.getProperty("educationinvsuggestionsuggestedplan"))).getText();
+	//	int currentyear = new Date().getYear();
+	//	
+	//	if(Integer.parseInt(goalduration) == 1 && Integer.parseInt(goalstartyear) > currentyear+1)
+	//	{
+	//		String suggestedtext = "\"To reach your goal of "+goalamount+", we suggest you save "+suggestedcontribution+" per month from today till "+(Integer.parseInt(goalstartyear)-1);
+	//	}
+	//	else if(Integer.parseInt(goalduration) == 1 && Integer.parseInt(goalstartyear) == currentyear+1)
+	//	{
+	//		String suggestedtext = "\"To reach your goal of "+goalamount+", we suggest you save "+suggestedcontribution+" per month from today till "+(Integer.parseInt(goalstartyear)-1);
+	//	}
+	//}
 	
 }

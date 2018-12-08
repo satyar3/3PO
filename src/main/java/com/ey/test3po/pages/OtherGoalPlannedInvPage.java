@@ -18,7 +18,7 @@ public class OtherGoalPlannedInvPage extends TestBase
 
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("othergoalplannedinvheader"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("othergoalplannedinvsubheader"))).getText());
-		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestedplanMoreThan55"))).isDisplayed());
+		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("largepurchaseplannedinvsuggestedplan"))).isDisplayed());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("othergoalplannedinvsub"))).getText());
 		pagecontent.add(driver.findElement(By.xpath(prop.getProperty("plannedinvtxtboxplaceholdertxt"))).getText());
 		pagecontent.add(driver.findElement(By.id(prop.getProperty("invsuggestiontextbox"))).isDisplayed());

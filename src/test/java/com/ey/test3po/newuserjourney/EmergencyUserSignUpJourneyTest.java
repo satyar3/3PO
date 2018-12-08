@@ -1,4 +1,4 @@
-package com.ey.test3po.userjourney;
+package com.ey.test3po.newuserjourney;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -68,16 +68,16 @@ public class EmergencyUserSignUpJourneyTest extends TestBase
 		System.out.println(testcaseid + " execution has been started.");
 
 		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, testcaseid);
-		selectgoal.goalChoice("Emergency Fund", testcaseid);
+		selectgoal.goalChoice("Emergency fund", testcaseid);
 		goalactivity.fillGoalQuestionnaire(goalname, monthsofsaltosave, testcaseid);
 
 		ArrayList<Object> plannedinvpagecontent = plannedinv.getPageContentOfPlannedInvestment();
 
-		Assert.assertEquals("Setting Up Your Emergency Fund", plannedinvpagecontent.get(0), "Header mismatch in investment page");
-		Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
+		Assert.assertEquals("Setting up your emergency fund", plannedinvpagecontent.get(0), "Header mismatch in investment page");
+		Assert.assertEquals("Planned investments", plannedinvpagecontent.get(1), "Sub-header mismatch in investment suggestion page");
 		Assert.assertEquals(true, plannedinvpagecontent.get(2), "Suggested plan not displayed in the investment page");
 		Assert.assertEquals("How much can you set aside as emergency funds?", plannedinvpagecontent.get(3), "Investment subtext mismatch");
-		Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(4), "Planned investment placeholder text mismatch");
+		Assert.assertEquals("Planned investments", plannedinvpagecontent.get(4), "Planned investment placeholder text mismatch");
 		Assert.assertEquals(true, plannedinvpagecontent.get(5), "Investment inputbox is missing");
 		Assert.assertEquals(TestUtil.convNum(suggestinvamount), plannedinvpagecontent.get(6), "Suggested investment amount mismatch in investment page");
 
@@ -91,16 +91,16 @@ public class EmergencyUserSignUpJourneyTest extends TestBase
 
 		ArrayList<Object> annualspendingpagecontent = annualspending.getPageContentOfAnnualSpending();
 
-		Assert.assertEquals("Setting Up Your Emergency Fund", annualspendingpagecontent.get(0), "Header mismatch in annual spending page");
-		Assert.assertEquals("Annual Spending", annualspendingpagecontent.get(1), "Sub-header mismatch in annual spending page");
+		Assert.assertEquals("Setting up your emergency fund", annualspendingpagecontent.get(0), "Header mismatch in Annual spending page");
+		Assert.assertEquals("Annual spending", annualspendingpagecontent.get(1), "Sub-header mismatch in Annual spending page");
 		Assert.assertEquals(true, annualspendingpagecontent.get(2), "Annual spending suggested plan not displayed");
 		Assert.assertEquals(true, annualspendingpagecontent.get(3), "Annual spending sub-text not displayed");
-		Assert.assertEquals(true, annualspendingpagecontent.get(4), "Label legand is not displayed in annual spending page");
-		Assert.assertEquals(true, annualspendingpagecontent.get(5), "Label legand sub-text is not displayed in annual spending page");
-		Assert.assertEquals(true, annualspendingpagecontent.get(6), "Phone dialier image is missing in annual spending page");
+		Assert.assertEquals(true, annualspendingpagecontent.get(4), "Label legand is not displayed in Annual spending page");
+		Assert.assertEquals(true, annualspendingpagecontent.get(5), "Label legand sub-text is not displayed in Annual spending page");
+		Assert.assertEquals(true, annualspendingpagecontent.get(6), "Phone dialier image is missing in Annual spending page");
 		Assert.assertEquals("Have questions?", annualspendingpagecontent.get(7), "Have questions section is missing");
 		Assert.assertEquals(" Call an Advisor", annualspendingpagecontent.get(8), "Call an Advisor section is missing");
-		Assert.assertEquals("Sign up and view your recommended asset allocation", annualspendingpagecontent.get(9), "Asset allocation section is missing in annual spending page");
+		Assert.assertEquals("Sign up and view your recommended asset allocation", annualspendingpagecontent.get(9), "Asset allocation section is missing in Annual spending page");
 		Assert.assertEquals(monthsofsaltosave, annualspendingpagecontent.get(10));
 
 		if (flag == true)

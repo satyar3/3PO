@@ -17,8 +17,8 @@ public class GoalSelectionPage extends TestBase
 	{
 
 		// creating xpath for goal
-		String beforeGoalXpath = "//android.widget.TextView[@text='"; // not available in config file
-		String afterGoalXpath = "']"; // not available in config file
+		String beforeGoalXpath = "//android.widget.TextView[contains(@text,'"; // not available in config file
+		String afterGoalXpath = "')]"; // not available in config file
 		goalXpath = beforeGoalXpath + goal + afterGoalXpath;
 		driver.findElement(By.xpath(GoalSelectionPage.goalXpath)).click();
 		//log.info("Goal Selected");

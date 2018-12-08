@@ -69,6 +69,7 @@ public class RetirementDelayInGoalPage extends TestBase
 	{
 
 		driver.findElement(By.xpath(prop.getProperty("retirementdelayplaceholdertxt"))).click();
+		driver.findElement(By.xpath(prop.getProperty("retirementdelaytextboxafterclick"))).click();
 		// driver.findElement(By.xpath(prop.getProperty("retirementdelaydropdown"))).click();
 		String upd_year = year.substring(0, year.length());
 		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"" + upd_year + "\"))")).click();

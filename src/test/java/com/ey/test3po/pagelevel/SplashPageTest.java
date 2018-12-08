@@ -1,4 +1,4 @@
-package com.ey.test3po.pagelevellessthan55;
+package com.ey.test3po.pagelevel;
 
 import java.io.IOException;
 

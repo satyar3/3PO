@@ -50,10 +50,14 @@ public class TestListener extends TestBase implements ITestListener
 
 		try
 		{
+			//To add the screenshot in extent report
 			String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 			ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
-
+			
+			//To Add the error in extent report
 			ExtentTestManager.getTest().log(LogStatus.FAIL, iTestResult.getThrowable());
+			
+			//To Store the Screenshot in local
 			TestUtil.captureScreenshot(iTestResult.getMethod().getMethodName());
 		}
 		catch (NullPointerException e)

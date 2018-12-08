@@ -3,6 +3,8 @@ package com.ey.test3po.pages;
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.ey.test3po.testbase.TestBase;
 import com.ey.test3po.util.TestUtil;
@@ -41,7 +43,7 @@ public class UserProfilePage extends TestBase
 		String upd_age = age.substring(0, age.length());
 		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"" + upd_age + "\"))")).click();
 
-		explicitWait(driver.findElement(By.id(prop.getProperty("continueButtonbyid"))));
+		new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOf(driver.findElement(By.id(prop.getProperty("continueButtonbyid")))));
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(), Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
 	}

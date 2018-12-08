@@ -107,8 +107,14 @@ public class LargePurchaseGoalAnnualSpendingPage extends TestBase
 			String goalamtonscreen = plansuggestiontxt.substring(dolstartpos1 + 1, dolendpos1 - 2);
 			pagecontent.add(goalamtonscreen);
 			// log.info("Gaol Amount is : " + goalamtonscreen);
-			int dolstartpos2 = plansuggestiontxt.indexOf("$", dolstartpos1 + 1);
-			String affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.length());
+			int dolstartpos2 = plansuggestiontxt.indexOf("$", dolstartpos1 + 1);			
+			
+			String affordabilityamtonscreenheadr;
+			if(plansuggestiontxt.trim().endsWith("."))
+				affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.trim().length()-1);
+			else
+				affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.trim().length());
+			
 			pagecontent.add(affordabilityamtonscreenheadr.trim());
 			// log.info("Affordability Amount is : " + affordabilityamtonscreenheadr);
 		}

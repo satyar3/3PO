@@ -71,6 +71,7 @@ public class OtherGoalDelayInGoalPage extends TestBase
 	{
 
 		driver.findElement(By.xpath(prop.getProperty("delayyearplaceholdertxt"))).click();
+		driver.findElement(By.xpath(prop.getProperty("delaytextboxafterclick"))).click();
 		String upd_year = year.substring(0, year.length());
 		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"" + upd_year + "\"))")).click();
 		driver.findElement(By.xpath(prop.getProperty("othergoaldelayheader"))).click();

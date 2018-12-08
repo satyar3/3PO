@@ -160,7 +160,7 @@ public class RetirementGoalInvSuggestionsPage extends TestBase
 
 		if (Double.parseDouble(plannedinvamount) != 0)
 		{
-			String labellegandbeforeclick = driver.findElement(By.xpath(prop.getProperty("retirementinvsuggestionslabellegand"))).getText();
+			String labellegandbeforeclick = driver.findElement(By.xpath(prop.getProperty("labellegandInvSuggestion"))).getText();
 			pagecontent.add(labellegandbeforeclick);
 		}
 		

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.ey.test3po.testbase.TestBase;
 import com.ey.test3po.util.TestUtil;
@@ -45,6 +47,10 @@ public class SignUpPage extends TestBase
 		
 		TestUtil.captureScreenShotForEachStep(Thread.currentThread().getStackTrace()[2].getMethodName(),Thread.currentThread().getStackTrace()[1].getMethodName());
 		driver.findElement(By.id(prop.getProperty("continueButtonbyid"))).click();
+		
+		//WebElement element = driver.findElement(By.xpath("//*[@resource-id='com.eygsskpoc.ey3po:id/txtUserName' and @text='Hi "+username+"!']"));
+		
+		new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@resource-id='com.eygsskpoc.ey3po:id/txtUserName' and @text='Hi "+username+"!']")));
 	}
 
 }

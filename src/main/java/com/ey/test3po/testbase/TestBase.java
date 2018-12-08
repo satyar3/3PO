@@ -9,12 +9,8 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -27,7 +23,11 @@ public class TestBase
 	protected static AndroidDriver driver;
 	// protected static WebDriver driver;
 	protected static Properties prop;
+	protected static Properties prop1;
+	protected static Properties prop2;
 	protected static FileInputStream fs;
+	protected static FileInputStream fs1;
+	protected static FileInputStream fs2;
 	protected static DesiredCapabilities capabilities;
 	protected static int duration;
 	protected static String testcasenum;
@@ -41,9 +41,17 @@ public class TestBase
 	{
 		try
 		{
-			fs = new FileInputStream("src\\main\\java\\com\\ey\\test3po\\config\\config.properties");
+			fs1 = new FileInputStream("src\\main\\java\\com\\ey\\test3po\\config\\config.properties");
+			prop1 = new Properties();
+			prop1.load(fs1);
+			
+			fs2 = new FileInputStream("src\\main\\java\\com\\ey\\test3po\\config\\OR.properties");
+			prop2 = new Properties();
+			prop2.load(fs2);
+			
 			prop = new Properties();
-			prop.load(fs);
+			prop.putAll(prop1);
+			prop.putAll(prop2);
 
 		}
 		catch (FileNotFoundException e)
@@ -106,8 +114,9 @@ public class TestBase
 		return currentactivity;
 	}
 
-	public void explicitWait(WebElement element)
+	/*public void explicitWait(WebElement element)
 	{
 		new WebDriverWait(driver, 3).ignoring(NoSuchElementException.class).until(ExpectedConditions.visibilityOf(element));
-	}	
+	}*/	
+	
 }

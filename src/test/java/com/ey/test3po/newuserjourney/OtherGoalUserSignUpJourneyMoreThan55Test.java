@@ -1,4 +1,4 @@
-package com.ey.test3po.userjourney;
+package com.ey.test3po.newuserjourney;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -96,7 +96,7 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 		}
 
 		userprofile.fillUserProfileQuestionnaire(annualincome, zip, age, testcaseid);
-		selectgoal.goalChoice("Other Goal", testcaseid);
+		selectgoal.goalChoice("Other goal", testcaseid);
 		goalactivity.fillGoalQuestionnaire(goalname, purchaseyear, goalamount, goalduration, testcaseid);
 		goalimportance.riskFactor(riskfactor, testcaseid);
 
@@ -106,11 +106,11 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 			{
 				ArrayList<Object> plannedinvpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
 
-				Assert.assertEquals("Setting Up Your Other Goal", plannedinvpagecontent.get(0));
-				Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(1));
+				Assert.assertEquals("Setting up your other goal", plannedinvpagecontent.get(0));
+				Assert.assertEquals("Planned investments", plannedinvpagecontent.get(1));
 				Assert.assertEquals(true, plannedinvpagecontent.get(2));
-				Assert.assertEquals("How much have you already saved for other goal?", plannedinvpagecontent.get(3));
-				Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(4));
+				Assert.assertEquals("How much have you already saved for your other goal?", plannedinvpagecontent.get(3));
+				Assert.assertEquals("Planned investments", plannedinvpagecontent.get(4));
 				Assert.assertEquals(true, plannedinvpagecontent.get(5));
 				Assert.assertEquals(TestUtil.convNum(suggestedinvestment), plannedinvpagecontent.get(6));
 
@@ -123,15 +123,15 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 					Assert.assertEquals(TestUtil.convNum(suggestedinvestment), plannedinv.pagecontentafterclick.get(1));
 					ArrayList<Object> plannedcontributionpagecontent = plannedinvsuggestions.getPageContentOfInvestmentSuggestionMoreThan55(plannedinvamt);
 
-					Assert.assertEquals("Setting Up Your Other Goal", plannedcontributionpagecontent.get(0));
-					Assert.assertEquals("Planned Contributions", plannedcontributionpagecontent.get(1));
+					Assert.assertEquals("Setting up your other goal", plannedcontributionpagecontent.get(0));
+					Assert.assertEquals("Planned contributions", plannedcontributionpagecontent.get(1));
 					Assert.assertEquals(true, plannedcontributionpagecontent.get(2));
-					Assert.assertEquals("Too much? Too Little?" + "\n" + "Let us know and we'll rerun the numbers", plannedcontributionpagecontent.get(3));
+					Assert.assertEquals("Too much? Too little?" + "\n" + "Let us know and we'll rerun the numbers", plannedcontributionpagecontent.get(3));
 					Assert.assertEquals(true, plannedcontributionpagecontent.get(4));
 					Assert.assertEquals(true, plannedcontributionpagecontent.get(5));
 					Assert.assertEquals("Adjust my contributions with salary growth", plannedcontributionpagecontent.get(6));
 					Assert.assertEquals(true, plannedcontributionpagecontent.get(7));
-					Assert.assertEquals("Planned Monthly Contribution ($)", plannedcontributionpagecontent.get(8));
+					Assert.assertEquals("Planned monthly contribution ($)", plannedcontributionpagecontent.get(8));
 					Assert.assertEquals(TestUtil.convNum(plannedinvamt), plannedcontributionpagecontent.get(9));
 					Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedcontributionpagecontent.get(10));
 					Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedcontributionpagecontent.get(11));
@@ -146,11 +146,11 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 							Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedinvsuggestions.pagecontentafterclick.get(1));
 							ArrayList<Object> delaypagecontent = delayingoal.getPageContentOfDelayGoalScreen(plannedcontributionamt, plannedinvamt, age);
 
-							Assert.assertEquals("Setting Up Your Other Goal", delaypagecontent.get(0));
-							Assert.assertEquals("Start Year", delaypagecontent.get(1));
+							Assert.assertEquals("Setting up your other goal", delaypagecontent.get(0));
+							Assert.assertEquals("Start year", delaypagecontent.get(1));
 							Assert.assertEquals(true, delaypagecontent.get(2));
 							Assert.assertEquals("When would you like to make your purchase?", delaypagecontent.get(3));
-							Assert.assertEquals("Number Of Years", delaypagecontent.get(4));
+							Assert.assertEquals("Number of years", delaypagecontent.get(4));
 							Assert.assertEquals(true, delaypagecontent.get(5));
 							Assert.assertEquals(true, delaypagecontent.get(6));
 							Assert.assertEquals(true, delaypagecontent.get(7));
@@ -165,11 +165,11 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 							Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedinvsuggestions.pagecontentafterclick.get(1));
 							ArrayList<Object> pagecontentDelay = delayingoal.getPageContentOfDelayGoalScreen(plannedcontributionamt, plannedinvamt, age);
 
-							Assert.assertEquals("Setting Up Your Other Goal", pagecontentDelay.get(0), "Goal header mismatch in delay page");
-							Assert.assertEquals("Start Year", pagecontentDelay.get(1), "Goal sub header mismatch in delay page");
+							Assert.assertEquals("Setting up your other goal", pagecontentDelay.get(0), "Goal header mismatch in delay page");
+							Assert.assertEquals("Start year", pagecontentDelay.get(1), "Goal sub header mismatch in delay page");
 							Assert.assertEquals(true, pagecontentDelay.get(2), "Delay suggestion text missing in delay page");
 							Assert.assertEquals("When would you like to make your purchase?", pagecontentDelay.get(3), "Sub text mismatch in delay page");
-							Assert.assertEquals("Number Of Years", pagecontentDelay.get(4), "Delay placeholder text mismatch in delay page");
+							Assert.assertEquals("Number of years", pagecontentDelay.get(4), "Delay placeholder text mismatch in delay page");
 							Assert.assertEquals(true, pagecontentDelay.get(5), "Delay drop down missing in delay page");
 							// Assert.assertEquals(true, pagecontentDelay.get(6),"Lable legand missing in delay page");
 							// Assert.assertEquals(true, pagecontentDelay.get(7),"Lable legand text missing in delay page");
@@ -187,11 +187,11 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 
 				ArrayList<Object> plannedinvpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
 
-				Assert.assertEquals("Setting Up Your Other Goal", plannedinvpagecontent.get(0));
-				Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(1));
+				Assert.assertEquals("Setting up your other goal", plannedinvpagecontent.get(0));
+				Assert.assertEquals("Planned investments", plannedinvpagecontent.get(1));
 				Assert.assertEquals(true, plannedinvpagecontent.get(2));
-				Assert.assertEquals("How much have you already saved for other goal?", plannedinvpagecontent.get(3));
-				Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(4));
+				Assert.assertEquals("How much have you already saved for your other goal?", plannedinvpagecontent.get(3));
+				Assert.assertEquals("Planned investments", plannedinvpagecontent.get(4));
 				Assert.assertEquals(true, plannedinvpagecontent.get(5));
 				Assert.assertEquals(TestUtil.convNum(suggestedinvestment), plannedinvpagecontent.get(6));
 
@@ -204,15 +204,15 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 				Assert.assertEquals(TestUtil.convNum(suggestedinvestment), plannedinv.pagecontentafterclick.get(0));
 				ArrayList<Object> plannedcontributionpagecontent = plannedinvsuggestions.getPageContentOfInvestmentSuggestionMoreThan55(plannedinvamt);
 
-				Assert.assertEquals("Setting Up Your Other Goal", plannedcontributionpagecontent.get(0));
-				Assert.assertEquals("Planned Contributions", plannedcontributionpagecontent.get(1));
+				Assert.assertEquals("Setting up your other goal", plannedcontributionpagecontent.get(0));
+				Assert.assertEquals("Planned contributions", plannedcontributionpagecontent.get(1));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(2));
-				Assert.assertEquals("Too much? Too Little?" + "\n" + "Let us know and we'll rerun the numbers", plannedcontributionpagecontent.get(3));
+				Assert.assertEquals("Too much? Too little?" + "\n" + "Let us know and we'll rerun the numbers", plannedcontributionpagecontent.get(3));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(4));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(5));
 				Assert.assertEquals("Adjust my contributions with salary growth", plannedcontributionpagecontent.get(6));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(7));
-				Assert.assertEquals("Planned Monthly Contribution ($)", plannedcontributionpagecontent.get(8));
+				Assert.assertEquals("Planned monthly contribution ($)", plannedcontributionpagecontent.get(8));
 				Assert.assertEquals(TestUtil.convNum(plannedinvamt), plannedcontributionpagecontent.get(9));
 				Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedcontributionpagecontent.get(10));
 				// Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedcontributionpagecontent.get(11));
@@ -224,11 +224,11 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 
 				ArrayList<Object> plannedinvpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
 
-				Assert.assertEquals("Setting Up Your Other Goal", plannedinvpagecontent.get(0));
-				Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(1));
+				Assert.assertEquals("Setting up your other goal", plannedinvpagecontent.get(0));
+				Assert.assertEquals("Planned investments", plannedinvpagecontent.get(1));
 				Assert.assertEquals(true, plannedinvpagecontent.get(2));
-				Assert.assertEquals("How much have you already saved for other goal?", plannedinvpagecontent.get(3));
-				Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(4));
+				Assert.assertEquals("How much have you already saved for your other goal?", plannedinvpagecontent.get(3));
+				Assert.assertEquals("Planned investments", plannedinvpagecontent.get(4));
 				Assert.assertEquals(true, plannedinvpagecontent.get(5));
 				Assert.assertEquals(TestUtil.convNum(suggestedinvestment), plannedinvpagecontent.get(6));
 
@@ -241,15 +241,15 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 				Assert.assertEquals(TestUtil.convNum(suggestedinvestment), plannedinv.pagecontentafterclick.get(0));
 				ArrayList<Object> plannedcontributionpagecontent = plannedinvsuggestions.getPageContentOfInvestmentSuggestionMoreThan55(plannedinvamt);
 
-				Assert.assertEquals("Setting Up Your Other Goal", plannedcontributionpagecontent.get(0));
-				Assert.assertEquals("Planned Contributions", plannedcontributionpagecontent.get(1));
+				Assert.assertEquals("Setting up your other goal", plannedcontributionpagecontent.get(0));
+				Assert.assertEquals("Planned contributions", plannedcontributionpagecontent.get(1));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(2));
-				Assert.assertEquals("Too much? Too Little?" + "\n" + "Let us know and we'll rerun the numbers", plannedcontributionpagecontent.get(3));
+				Assert.assertEquals("Too much? Too little?" + "\n" + "Let us know and we'll rerun the numbers", plannedcontributionpagecontent.get(3));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(4));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(5));
 				Assert.assertEquals("Adjust my contributions with salary growth", plannedcontributionpagecontent.get(6));
 				Assert.assertEquals(true, plannedcontributionpagecontent.get(7));
-				Assert.assertEquals("Planned Monthly Contribution ($)", plannedcontributionpagecontent.get(8));
+				Assert.assertEquals("Planned monthly contribution ($)", plannedcontributionpagecontent.get(8));
 				Assert.assertEquals(TestUtil.convNum(plannedinvamt), plannedcontributionpagecontent.get(9));
 				Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedcontributionpagecontent.get(10));
 				// Assert.assertEquals(TestUtil.convNum(suggestedaffordability1), plannedcontributionpagecontent.get(11));
@@ -264,11 +264,11 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 					Assert.assertEquals(TestUtil.convNum(suggestedcontribution), plannedinvsuggestions.pagecontentafterclick.get(1));
 					ArrayList<Object> delaypagecontent = delayingoal.getPageContentOfDelayGoalScreen(plannedcontributionamt, plannedinvamt, age);
 
-					Assert.assertEquals("Setting Up Your Other Goal", delaypagecontent.get(0));
-					Assert.assertEquals("Start Year", delaypagecontent.get(1));
+					Assert.assertEquals("Setting up your other goal", delaypagecontent.get(0));
+					Assert.assertEquals("Start year", delaypagecontent.get(1));
 					Assert.assertEquals(true, delaypagecontent.get(2));
 					Assert.assertEquals("When would you like to make your purchase?", delaypagecontent.get(3));
-					Assert.assertEquals("Number Of Years", delaypagecontent.get(4));
+					Assert.assertEquals("Number of years", delaypagecontent.get(4));
 					Assert.assertEquals(true, delaypagecontent.get(5));
 					Assert.assertEquals(true, delaypagecontent.get(6));
 					Assert.assertEquals(true, delaypagecontent.get(7));
@@ -287,11 +287,11 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 		{
 			ArrayList<Object> plannedinvpagecontent = plannedinv.getPageContentOfPlannedInvestmentMoreThan55();
 
-			Assert.assertEquals("Setting Up Your Other Goal", plannedinvpagecontent.get(0));
-			Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(1));
+			Assert.assertEquals("Setting up your other goal", plannedinvpagecontent.get(0));
+			Assert.assertEquals("Planned investments", plannedinvpagecontent.get(1));
 			Assert.assertEquals(true, plannedinvpagecontent.get(2));
-			Assert.assertEquals("How much have you already saved for other goal?", plannedinvpagecontent.get(3));
-			Assert.assertEquals("Planned Investments", plannedinvpagecontent.get(4));
+			Assert.assertEquals("How much have you already saved for your other goal?", plannedinvpagecontent.get(3));
+			Assert.assertEquals("Planned investments", plannedinvpagecontent.get(4));
 			Assert.assertEquals(true, plannedinvpagecontent.get(5));
 			Assert.assertEquals(TestUtil.convNum(suggestedinvestment), plannedinvpagecontent.get(6));
 
@@ -301,8 +301,8 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 
 		ArrayList<Object> annualspendingpagecontent = annualspending.getPageContentOfAnnualSpending(plannedcontributionamt, plannedinvamt);
 
-		Assert.assertEquals("Setting Up Your Other Goal", annualspendingpagecontent.get(0));
-		Assert.assertEquals("Annual Spending", annualspendingpagecontent.get(1));
+		Assert.assertEquals("Setting up your other goal", annualspendingpagecontent.get(0));
+		Assert.assertEquals("Annual spending", annualspendingpagecontent.get(1));
 		Assert.assertEquals(true, annualspendingpagecontent.get(2));
 		Assert.assertEquals(true, annualspendingpagecontent.get(3));
 		Assert.assertEquals(true, annualspendingpagecontent.get(4));
@@ -315,22 +315,22 @@ public class OtherGoalUserSignUpJourneyMoreThan55Test extends TestBase
 
 		if (annualspendingpagecontent.size() == 13 && plannedcontributionamt.length() != 0 && (Double.parseDouble(plannedcontributionamt) != 0 || Double.parseDouble(plannedinvamt) != 0))
 		{
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page in suggested text");
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(12), "Suggested affordability mismacth in annual spending page in label legand");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(11), "Suggested affordability mismacth in Annual spending page in suggested text");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(12), "Suggested affordability mismacth in Annual spending page in label legand");
 		}
 		else if (annualspendingpagecontent.size() == 13 && plannedcontributionamt.length() == 0)
 		{
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page in suggested text");
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(12), "Suggested affordability mismacth in annual spending page in label legand");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(11), "Suggested affordability mismacth in Annual spending page in suggested text");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(12), "Suggested affordability mismacth in Annual spending page in label legand");
 		}
 		else if (annualspendingpagecontent.size() == 13 && (Double.parseDouble(plannedcontributionamt) == 0 && Double.parseDouble(plannedinvamt) == 0))
 		{
-			Assert.assertEquals("0", annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page in suggested text");
-			// Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(12), "Suggested affordability mismacth in annual spending page in label legand");
+			Assert.assertEquals("0", annualspendingpagecontent.get(11), "Suggested affordability mismacth in Annual spending page in suggested text");
+			// Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(12), "Suggested affordability mismacth in Annual spending page in label legand");
 		}
 		else
 		{
-			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(11), "Suggested affordability mismacth in annual spending page in label legand");
+			Assert.assertEquals(TestUtil.convNum(suggestedaffordability3), annualspendingpagecontent.get(11), "Suggested affordability mismacth in Annual spending page in label legand");
 		}
 
 		annualspending.signUp();

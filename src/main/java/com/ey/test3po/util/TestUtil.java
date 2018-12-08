@@ -133,6 +133,8 @@ public class TestUtil extends TestBase
 
 			e.printStackTrace();
 		}
+		
+		//Adding Screenshot to TestNG report 
 		String filePath = fname.toString();
 		String path = "<img src=\"file://" + filePath + "\" alt=\"\"/>";
 		Reporter.log(path);

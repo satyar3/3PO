@@ -90,7 +90,14 @@ public class EducationGoalAnnualSpendingPage extends TestBase
 			pagecontent.add(goalamtonscreen);
 
 			int dolstartpos2 = plansuggestiontxt.indexOf("$", dolstartpos1 + 1);
-			String affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.length());
+			
+			String affordabilityamtonscreenheadr;
+			if(plansuggestiontxt.trim().endsWith("."))
+				affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.trim().length()-1);
+			else
+				affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.trim().length());
+			
+			//String affordabilityamtonscreenheadr = plansuggestiontxt.substring(dolstartpos2 + 1, plansuggestiontxt.length());			
 			pagecontent.add(affordabilityamtonscreenheadr.trim());
 		}
 		else
